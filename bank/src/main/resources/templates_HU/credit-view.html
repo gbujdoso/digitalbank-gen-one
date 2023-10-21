@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html class="no-js" lang="hu" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common/sections :: header-css"/>
+
+<body>
+
+<!-- Bal Panel -->
+<aside th:replace="common/menus :: left-panel"></aside>
+
+<!-- Jobb Panel -->
+<div id="right-panel" class="right-panel">
+
+	<header th:replace="common/menus :: rp-header"/>
+
+	<div th:replace="common/menus :: rp-breadcrumbs (pageTitle='Hitelszámlák Megtekintése')"/>
+
+	<!-- Oldal Tartalom Kezdete -->
+
+	<div class="content mt-3">
+		<div class="animated fadeIn">
+
+			<div id="firstRow" class="row">
+				<div class="col-md-6 col-lg-4">
+					<div class="card bg-flat-color-6 text-light">
+
+						<form id="deleteCard" th:action="@{/credit/credit-delete}" method="get">
+							<div class="card-body">
+								<label class="float-right">
+									<a href="#" onclick="document.getElementById('deleteCard').submit();">
+										<i class="visa fa fa-cc-visa fa-2x"></i>
+									</a>
+								</label>
+								<div class="visa h4 m-0">Jutalmak VISA kártya</div>
+								<div><br></div>
+								<div><small class="text-light" th:text="'Kártyaszám: ' + ${ccMaskedNumber}"></small></div>
+								<div><small class="text-light" th:text="'Hitelkeret: $' + ${ccDetail.creditLimit}"></small></div>
+								<div><small class="text-light" th:text="'Éves százalékos kamatláb: ' + ${ccDetail.apr} + '%'"></small></div>
+								<div><small class="text-light"><br></small></div>
+								<div><small class="text-light" th:text="'Elérhető egyenleg: $' + ${ccDetail.availableBalance}"></small></div>
+								<div><small class="text-light" th:text="'Minimum fizetendő összeg: $' + ${ccBillingDetail.minimumPaymentDue}"></small></div>
+								<div><small class="text-light" th:text="'Fizetési határidő: ' + ${#dates.format(ccBillingDetail.paymentDueDate, 'MM/dd/yyyy')}"></small></div>
+								<div><br></div>
+								<div class="h4 m-0" th:text="'Jelenlegi egyenleg: $' + ${ccDetail.currentBalance}"></div>
+							</div> <!-- Kártya Tartalom Vége -->
+						</form> <!-- Form Vége -->
+					</div> <!-- Kártya Vége -->
+				</div><!-- Oszlop 6 Vége -->
+			</div> <!-- Sor Vége -->
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header bg-secondary">
+							<strong class="card-title text-light">Tranzakciók</strong>
+						</div>
+						<div class="card-body">
+							<table id="transactionTable" class="table table-striped table-bordered">
+								<thead>
+								<tr class="bg-secondary text-light">
+									<th data-field="date" data-sortable="true">Dátum</th>
+									<th data-field="category" data-sortable="true">Kategória</th>
+									<th data-field="description" data-sortable="true">Leírás</th>
+									<th data-field="amount" data-sortable="true">Összeg</th>
+									<th data-field="balance" data-sortable="true">Egyenleg</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr th:each="trans : ${ccTransDetailList}">
+									<td th:text="${#dates.format(trans.transactionDate, 'yyyy-MM-dd HH:mm')}"></td>
+									<td th:text="${trans.transactionCategory.name}"></td>
+									<td th:text="${trans.transactionNumber + ' (' + trans.transactionType.code +') - ' + trans.description}"></td>
+									<td th:text="'$' + ${trans.amount}"></td>
+									<td th:text="'$' + ${trans.runningBalance}"></td>
+								</tr>
+								</tbody>
+							</table>
+						</div> <!-- Kártya Tartalom Vége -->
+					</div> <!-- Kártya Vége -->
+				</div> <!-- Oszlop 12 Vége -->
+			</div> <!-- Sor Vége -->
+
+		</div><!-- .animated -->
+	</div><!-- Tartalom Vége -->
+
+</div> <!-- Jobb Panel Vége -->
+
+<!-- Láb -->
+<div th:replace="common/sections :: footer-scripts"></div>
+
+<script th:src="@{/js/lib/data-table/datatables.min.js}"></script>
+<script th:src="@{/js/lib/data-table/dataTables.bootstrap.min.js}"></script>
+<script th:src="@{/js/lib/data-table/dataTables.buttons.min.js}"></script>
+<script th:src="@{/js/lib/data-table/buttons.bootstrap.min.js}"></script>
+<script th:src="@{/js/lib/data-table/jszip.min.js}"></script>
+<script th:src="@{/js/lib/data-table/pdfmake.min.js}"></script>
+<script th:src="@{/js/lib/data-table/vfs_fonts.js}"></script>
+<script th:src="@{/js/lib/data-table/buttons.html5.min.js}"></script>
+<script th:src="@{/js/lib/data-table/buttons.print.min.js}"></script>
+<script th:src="@{/js/lib/data-table/buttons.colVis.min.js}"></script>
+<script th:src="@{/js/lib/data-table/datatables-init.js}"></script>
+
+<script type="text/javascript">
+
+        $('#transactionTable').DataTable({
+               'order': []
+        });
+
+    </script>
+
+</body>
+</html>

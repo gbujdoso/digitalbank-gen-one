@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="hu" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common/sections :: header-css"/>
+
+<body>
+
+
+<!-- Bal oldali panel -->
+<aside th:replace="common/menus :: left-panel"></aside>
+
+<!-- Jobb oldali panel -->
+<div id="right-panel" class="right-panel">
+
+	<header th:replace="common/menus :: rp-header"/>
+
+	<div th:replace="common/menus :: rp-breadcrumbs (pageTitle='Külső bankszámla hozzáadása')"/>
+
+	<!-- Oldal tartalom Kezdete -->
+
+	<div class="content mt-3">
+		<div class="animated fadeIn">
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-header bg-flat-color-1">
+							<strong class="card-title text-white">Nyisson meg egy banki fiókot</strong>
+						</div>
+						<form th:action="@{/obp/obp-add}" method="post">
+							<div class="card-body card-block">
+								<div class="form-group text-left">
+									<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" th:if="${errorMsg}">
+										<span class="badge badge-pill badge-danger">Hiba</span>
+										<span th:text="${errorMsg}"></span>
+										<button type="button" class="close" data-dismiss="alert" aria-label="Bezárás">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+								</div>
+
+								<div class="row form-group">
+									<div class="col col-sm-4">
+										<label class=" form-control-label"><strong>Banki Szolgáltatók</strong></label>
+										<select class="form-control" id="bankId" name="bankId" required>
+											<option class="text-light" value="">---------- Válasszon Szolgáltatót -----------</option>
+											<option th:each="bank : ${bankList}" th:selected="${bank.id == bankId}" th:text="${bank.full_name}" th:value="${bank.id}"></option>
+										</select>
+									</div>
+								</div>
+
+								<div class="row form-group">
+									<div class="col col-sm-4">
+										<label class="form-control-label"><strong>Felhasználónév</strong></label>
+										<input type="text" class="form-control" id="username" name="username" th:value=${username} required>
+										<small class="form-text text-muted">Adja meg a felhasználónevet</small>
+									</div>
+								</div>
+								<div class="row form-group">
+									<div class="col col-sm-4">
+										<label class="form-control-label"><strong>Jelszó</strong></label>
+										<input type="password" class="form-control" id="password" name="password" required>
+										<small class="form-text text-muted">Adja meg a jelszót</small>
+									</div>
+								</div>
+							</div> <!-- Kártya Teste Vége -->
+							<div class="card-footer">
+								<input type="hidden" id="bankId" name="bankId" th:value="${bank.id}">
+								<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-dot-circle-o"></i> Elküld</button>
+								<button type="reset" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Visszaállítás</button>
+							</div> <!-- Kártya Láb Vége -->
+						</form>
+					</div> <!-- Kártya Vége -->
+				</div> <!-- Oszlop Vége -->
+			</div> <!-- Sor Vége -->
+
+		</div><!-- .animated -->
+	</div><!-- .content -->
+
+	<!-- Oldal tartalom Vége -->
+
+</div> <!-- Jobb oldali panel Vége -->
+
+<!-- Lábléc -->
+<div th:replace="common/sections :: footer-scripts"></div>
+
+</body>
+</html>

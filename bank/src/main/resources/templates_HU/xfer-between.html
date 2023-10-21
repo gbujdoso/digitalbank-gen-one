@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="hu" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common/sections :: header-css"/>
+
+<body>
+
+
+<!-- Bal Panel -->
+<aside th:replace="common/menus :: left-panel"></aside>
+
+<!-- Jobb Panel -->
+<div id="right-panel" class="right-panel">
+
+	<header th:replace="common/menus :: rp-header"/>
+
+	<div th:replace="common/menus :: rp-breadcrumbs (pageTitle='Belső Átutalás')"/>
+
+	<!-- Oldal Tartalom Kezdete -->
+
+	<div class="content mt-3">
+		<div class="animated fadeIn">
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class "card">
+					<div class="card-header bg-flat-color-1">
+						<strong class="card-title text-white">Átutalás Számlák Között</strong>
+					</div>
+					<form th:action="@{/account/xfer-between}" method="post">
+						<div class="card-body card-block">
+							<div class="form-group text-left">
+								<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" th:if="${errorMsg}">
+									<span class="badge badge-pill badge-danger">Hiba</span>
+									<span th:text="${errorMsg}"></span>
+									<button type="button" class="close" data-dismiss="alert" aria-label="Bezárás">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+							</div>
+
+							<div class="row form-group">
+								<div class="col col-sm-5">
+									<label class=" form-control-label"><strong>Induló Számla</strong></label>
+									<div class="form-inline">
+										<select class="form-control" id="fromAccount" name="fromAccount" required onChange="showFromBalance()">
+											<option class="text-light"value="">---------- Válassza ki a számlát -----------</option>
+											<option th:each="acct : ${accountList}" th:selected="${acct.id == fromAccount}" th:text="|${acct.name} (${acct.AccountType.name})|" th:value="${acct.id}"></option>
+										</select>
+										<small id="fromAccountBalance" class="text-muted ml-2"></small>
+									</div>
+								</div>
+							</div>
+							<div class="row form-group">
+								<div class="col col-sm-5">
+									<label class=" form-control-label"><strong>Cél Számla</strong></label>
+									<div class="form-inline">
+										<select class="form-control" id="toAccount" name="toAccount" required onChange="showToBalance()">
+											<option class="text-light"value="">---------- Válassza ki a számlát -----------</option>
+											<option th:each="acct : ${accountList}" th:selected="${acct.id == toAccount}" th:text="|${acct.name} (${acct.AccountType.name})|" th:value="${acct.id}"></option>
+										</select>
+										<small id="toAccountBalance" class="text-muted ml-2"></small>
+									</div>
+								</div>
+							</div>
+							<div class="row form-group">
+								<div class="col col-sm-3">
+									<label class="form-control-label"><strong>Átutalás Összege</strong></label>
+									<input type="text" class="form-control" th:field="${transaction.amount}" required th:pattern="${patternTransactionAmount}">
+									<small class="form-text text-muted">pl. 25.00</small>
+								</div>
+							</div>
+						</div> <!-- Kártya Testrész vége -->
+						<div class="card-footer">
+							<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-dot-circle-o"></i> Elküld</button>
+							<button type="reset" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Visszaállít</button>
+						</div> <!-- Kártya Láb rész vége -->
+					</form>
+				</div> <!-- Kártya vége -->
+			</div> <!-- Oszlop vége -->
+		</div> <!-- Sor vége -->
+
+	</div><!-- .Animált -->
+</div><!-- .Tartalom -->
+
+<!-- Oldal Tartalom vége -->
+
+</div> <!-- Jobb Panel vége -->
+
+<!-- Láb -->
+<div th:replace="common/sections :: footer-scripts"></div>
+
+<!-- A kiválasztott számla jelenlegi egyenlegének megjelenítése -->
+<script th:inline="javascript">
+        /*<![CDATA[*/
+        function showFromBalance() {
+            var accounts = /*[[${accountList}]]*/ null;
+            var selectedIndex = $("#fromAccount option:selected").index();
+            var fromAccount = accounts[selectedIndex-1];
+            if (fromAccount) {
+            	$("#fromAccountBalance").text("Egyenleg: $"+fromAccount.currentBalance.toFixed(2));
+            } else {
+            	$("#fromAccountBalance").text("");
+            }
+        }
+        function showToBalance() {
+            var accounts = /*[[${accountList}]]*/ null;
+            var selectedIndex = $("#toAccount option:selected").index();
+            var toAccount = accounts[selectedIndex-1];
+            if (toAccount) {
+            	$("#toAccountBalance").text("Egyenleg: $"+toAccount.currentBalance.toFixed(2));
+            } else {
+            	$("#toAccountBalance").text("");
+            }
+        }
+        $(function() { showFromBalance(); showToBalance(); });
+        /*]]>*/
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="hu" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common/sections :: header-css"/>
+
+<body>
+
+
+<!-- Bal Panel -->
+<aside th:replace="common/menus :: left-panel"></aside>
+
+<!-- Jobb Panel -->
+<div id="right-panel" class="right-panel">
+
+	<header th:replace="common/menus :: rp-header"/>
+
+	<div th:replace="common/menus :: rp-breadcrumbs (pageTitle='Számla Létrehozása')"/>
+
+	<!-- Oldal Tartalom Kezdet -->
+
+	<div class="content mt-3">
+		<div class="animated fadeIn">
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-header bg-flat-color-1">
+							<strong class="card-title text-white">Új Takarékszámla</strong>
+						</div>
+						<form th:action="@{/account/savings-add}" method="post">
+							<div class="card-body card-block">
+								<div class="form-group text-left">
+									<div id="new-account-error-alert" class="sufee-alert alert with-close alert-danger alert-dismissible fade show" th:if="${errorMsg}">
+										<span class="badge badge-pill badge-danger">Hiba</span>
+										<span id="new-account-error-msg" th:text="${errorMsg}"></span>
+										<button type="button" class="close" data-dismiss="alert" aria-label="Bezárás">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+								</div>
+								<div>
+									<div>
+										<label class="form-control-label"><strong>Válassza ki a Takarékszámla típusát</strong></label>
+									</div>
+									<div class="form-check-inline form-check">
+										<label class="form-check-label" th:each="acctType : ${accountTypeList}" th:for="${acctType.name}">
+											<input type="radio" class="form-check-input" th:id="${acctType.name}" th:onclick="|document.getElementById('minDeposit').innerHTML='pl. A minimális nyitó befizetés $${acctType.minDeposit}';|" th:field="*{account.accountType}" th:text="${acctType.name} + '&nbsp;&nbsp;&nbsp;'" th:value="${acctType.id}" required/>
+										</label>
+									</div>
+									<br><br>
+								</div>
+								<div>
+									<div>
+										<label class="form-control-label"><strong>Válassza ki a Számla Tulajdonjogát</strong></label>
+									</div>
+									<div class="form-check-inline form-check">
+										<label class "form-check-label" th:each="ownType : ${ownershipTypeList}" th:for="${ownType.name}">
+										<input type="radio" class="form-check-input" th:id="${ownType.name}" th:field="*{account.ownershipType}" th:text="${ownType.name} + '&nbsp;&nbsp;&nbsp;'" th:value="${ownType.id}" required/>
+										</label>
+									</div>
+									<br><br>
+								</div>
+								<div class="row form-group">
+									<div class="col col-sm-4">
+										<label class="form-control-label"><strong>Számla Neve</strong></label>
+										<input type="text" class="form-control" id="name" th:field="${account.name}" required maxlength="40">
+										<small class="form-text text-muted">pl. Rövid leíró név a számla könnyű azonosításához</small>
+									</div>
+								</div>
+								<div class="row form-group">
+									<div class="col col-sm-4">
+										<label class="form-control-label"><strong>Kezdeti Befizetés</strong></label>
+										<input type="text" class="form-control" id="openingBalance" th:field="${account.openingBalance}" required th:pattern="${patternTransactionAmount}">
+										<small class="form-text text-muted" id="minDeposit">pl. A minimális nyitó befizetés $25.00</small>
+									</div>
+								</div>
+							</div> <!-- Kártya Test Vége -->
+							<div class="card-footer">
+								<button id="newSavingsSubmit" type="submit" class="btn btn-primary btn-sm"><i class="fa fa-dot-circle-o"></i> Elküldés</button>
+								<button id="newSavingsReset" type="reset" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Alaphelyzetbe állítás</button>
+							</div> <!-- Kártya Láb Vége -->
+						</form>
+					</div> <!-- Kártya Vége -->
+				</div> <!-- Oszlop Vége -->
+			</div> <!-- Sor Vége -->
+
+		</div><!-- .animált -->
+	</div><!-- .tartalom -->
+
+	<!-- Oldal Tartalom Vége -->
+
+</div> <!-- Jobb Panel Vége -->
+
+<!-- Láb -->
+<div th:replace="common/sections :: footer-scripts"></div>
+
+</body>
+</html>

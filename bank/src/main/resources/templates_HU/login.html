@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"> 
+<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="common/sections :: header-css"/>
 
@@ -27,12 +27,12 @@ cookieconsent.run({"notice_banner_type":"interstitial","consent_type":"implied",
                         <img class="align-content" th:src="@{/images/logo.png}" alt="">
                     </a>
                 </div>
-                
-                
+
+
                 <div class="login-form">
-                
+
                 <!-- Begin Alerts -->
-                
+
                 	<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" th:if="${param.error}">
                        <span class="badge badge-pill badge-danger">Hiba</span>
                          Hibás belépési adatok vagy a hozzáférés nem engedélyezett a felhasználói fiók státusza, vagy létező felhasználó munkamenet miatt.
@@ -55,7 +55,7 @@ cookieconsent.run({"notice_banner_type":"interstitial","consent_type":"implied",
                        </button>
                    </div>
                    <!-- End Alerts -->
-                   
+
                    <!-- Begin Form -->
                    <form th:action="@{/login}" method="post">
 	                   <div class="form-group">
@@ -77,7 +77,7 @@ cookieconsent.run({"notice_banner_type":"interstitial","consent_type":"implied",
                            <p>Verzió=MF_v2.1.0.113</p>
                        </div>
                    </form>
-                   
+
                    <!-- End Form -->
                 </div> <!--  End Login Form -->
             </div> <!--  End Login Content -->
