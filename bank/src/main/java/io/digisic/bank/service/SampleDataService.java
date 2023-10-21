@@ -31,12 +31,12 @@ public class SampleDataService {
 	private static Faker faker = new Faker(new Locale("en-US"));
 
 	// Public Data
-	public static String SMPL_MALE_EMAIL 				= "jsmith@demo.io";
-	public static String SMPL_FEMALE_EMAIL 				= "nsmith@demo.io";
-	public static String SMPL_COMMON_PASSWORD 			= "Demo123!";
-	public static String SMPL_MALE_FIRST_NAME			= "Josh";
-	public static String SMPL_FEMALE_FIRST_NAME			= "Nicole";
-	public static String SMPL_COMMON_LAST_NAME			= "Smith";
+	public static String SMPL_MALE_EMAIL 				= "guest@masterfield.hu";
+	public static String SMPL_FEMALE_EMAIL 				= "fguest@masterfield.hu";
+	public static String SMPL_COMMON_PASSWORD 			= "master123";
+	public static String SMPL_MALE_FIRST_NAME			= "János";
+	public static String SMPL_FEMALE_FIRST_NAME			= "Éva";
+	public static String SMPL_COMMON_LAST_NAME			= "Kovács";
 	public static String SMPL_JOINT_CHECKING			= "Joint Checking";
 	public static String SMPL_JOINT_SAVINGS				= "Joint Savings";
 	public static String SMPL_INDIVIDUAL_CHECKING		= "Individual Checking";
