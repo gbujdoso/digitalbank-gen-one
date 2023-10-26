@@ -7,7 +7,6 @@
 <body class="bg-dark">
 
 
-
 <div class="sufee-login d-flex align-content-center flex-wrap">
     <div class="container">
         <div class="login-content">
@@ -18,7 +17,8 @@
             </div>
             <div class="login-form">
                 <div class="form-group text-left">
-                    <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" th:if="${errorMsg}">
+                    <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show"
+                         th:if="${errorMsg}">
                         <span class="badge badge-pill badge-danger">Hiba</span>
                         <span th:text="${errorMsg}"></span>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Bezárás">
@@ -38,12 +38,14 @@
                     </div>
                     <div class="form-group">
                         <label class="form-control-label"><strong>Keresztnév</strong></label>
-                        <input type="text" class="form-control" id="firstName" th:field="${userProfile.firstName}" required>
+                        <input type="text" class="form-control" id="firstName" th:field="${userProfile.firstName}"
+                               required>
                         <small class="form-text text-muted">pl. James</small>
                     </div>
                     <div class="form-group">
                         <label class="form-control-label"><strong>Vezetéknév</strong></label>
-                        <input type="text" class="form-control" id="lastName" th:field="${userProfile.lastName}" required>
+                        <input type="text" class="form-control" id="lastName" th:field="${userProfile.lastName}"
+                               required>
                         <small class="form-text text-muted">pl. Smith</small>
                     </div>
                     <div>
@@ -51,31 +53,37 @@
                     </div>
                     <div class="form-check-inline form-check">
                         <label for="male" class="form-check-label">
-                            <input type="radio" id="gender" th:field="${userProfile.gender}" name="gender" value="M" class="form-check-input" required>Férfi &nbsp;&nbsp;&nbsp;
+                            <input type="radio" id="gender" th:field="${userProfile.gender}" name="gender" value="M"
+                                   class="form-check-input" required>Férfi &nbsp;&nbsp;&nbsp;
                         </label>
                         <label for="female" class="form-check-label">
-                            <input type="radio" id="gender" th:field="${userProfile.gender}" name="gender" value="F" class="form-check-input" required>Nő &nbsp;&nbsp;&nbsp;
+                            <input type="radio" id="gender" th:field="${userProfile.gender}" name="gender" value="F"
+                                   class="form-check-input" required>Nő &nbsp;&nbsp;&nbsp;
                         </label>
                     </div>
                     <br><br>
                     <div class="form-group">
                         <label class="form-control-label"><strong>Születési dátum</strong></label>
-                        <input type="text" class="form-control" id="dob" th:field="${userProfile.dob}" required th:pattern="${patternDOB}">
+                        <input type="text" class="form-control" id="dob" th:field="${userProfile.dob}" required
+                               th:pattern="${patternDOB}">
                         <small class="form-text text-muted">pl. HH/NN/ÉÉÉÉ</small>
                     </div>
                     <div class="form-group">
                         <label class="form-control-label"><strong>Személyi igazolvány szám</strong></label>
-                        <input type="text" class="form-control" id="ssn" th:field="${userProfile.ssn}" required autocomplete="off" th:pattern="${patternSSN}" th:title="${patternSSNMSG}">
+                        <input type="text" class="form-control" id="ssn" th:field="${userProfile.ssn}" required
+                               autocomplete="off" th:pattern="${patternSSN}" th:title="${patternSSNMSG}">
                         <small class="form-text text-muted">pl. 123-45-6789</small>
                     </div>
                     <div class="form-group">
                         <label class="form-control-label"><strong>Email cím</strong></label>
-                        <input type="email" class="form-control" id="emailAddress" th:field="${userProfile.emailAddress}" required th:pattern="${patternEmail}">
+                        <input type="email" class="form-control" id="emailAddress"
+                               th:field="${userProfile.emailAddress}" required th:pattern="${patternEmail}">
                         <small class="form-text text-muted">pl. user@gmail.com</small>
                     </div>
                     <div class="form-group">
                         <label class="form-control-label"><strong>Jelszó</strong></label>
-                        <input type="password" class="form-control" id="password" th:field="${user.password}" required th:pattern="${patternPassword}" th:title="${patternPasswordMSG}">
+                        <input type="password" class="form-control" id="password" th:field="${user.password}" required
+                               th:pattern="${patternPassword}" th:title="${patternPasswordMSG}">
                     </div>
                     <div class="form-group">
                         <label class="form-control-label"><strong>Jelszó megerősítése</strong></label>
@@ -108,7 +116,8 @@
   			$( function() {
     			$( "#dob" ).datepicker();
   			} );
-  	</script>
+
+</script>
 
 <script type="text/javascript">
 
@@ -119,12 +128,13 @@
 	    		confirm_password.setCustomValidity("A jelszavak nem egyeznek meg");
 	  		} else {
 	    		confirm_password.setCustomValidity('');
-	 		 }	
+	 		 }
 		}
 
 		password.onchange = validatePassword;
 		confirm_password.onkeyup = validatePassword;
-	</script>
+
+</script>
 
 
 </body>

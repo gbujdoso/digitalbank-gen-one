@@ -12,124 +12,137 @@
 <!-- Jobb Panel -->
 <div id="right-panel" class="right-panel">
 
-	<header th:replace="common/menus :: rp-header"/>
+    <header th:replace="common/menus :: rp-header"/>
 
-	<div th:replace="common/menus :: rp-breadcrumbs (pageTitle='Ellenőrző számlák megtekintése')"/>
+    <div th:replace="common/menus :: rp-breadcrumbs (pageTitle='Ellenőrző számlák megtekintése')"/>
 
-	<!-- Oldaltartalom Kezdete -->
+    <!-- Oldaltartalom Kezdete -->
 
-	<div class="content mt-3">
-		<div class="animated fadeIn">
+    <div class="content mt-3">
+        <div class="animated fadeIn">
 
-			<div id="new-account-conf-alert" class="sufee-alert alert with-close alert-success alert-dismissible fade show" th:if="${newAcctConfMsg != ''}">
-				<span class="badge badge-pill badge-success">Megerősítés</span>
-				<span id="new-account-msg" th:text="${newAcctConfMsg}"></span>
-				<button type="button" class="close" data-dismiss="alert" aria-label="Bezárás">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
+            <div id="new-account-conf-alert"
+                 class="sufee-alert alert with-close alert-success alert-dismissible fade show"
+                 th:if="${newAcctConfMsg != ''}">
+                <span class="badge badge-pill badge-success">Megerősítés</span>
+                <span id="new-account-msg" th:text="${newAcctConfMsg}"></span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Bezárás">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
-			<div id="firstRow" class="row">
-				<div class="col-md-6 col-lg-3" th:each="acct : ${accountList}">
-					<div th:class="${acct.currentBalance < 0} ? 'card bg-flat-color-4 text-light' : 'card bg-flat-color-1 text-light'">
+            <div id="firstRow" class="row">
+                <div class="col-md-6 col-lg-3" th:each="acct : ${accountList}">
+                    <div th:class="${acct.currentBalance < 0} ? 'card bg-flat-color-4 text-light' : 'card bg-flat-color-1 text-light'">
 
-						<form th:action="@{/account/checking-view}" method="get">
-							<div class="card-body">
+                        <form th:action="@{/account/checking-view}" method="get">
+                            <div class="card-body">
 
-								<label class="switch switch-text switch-success switch-pill float-right">
-									<input type="checkbox" onclick="form.submit()" class="switch-input" name="selectSwitch" th:value="${acct.id}" th:checked="${acct.id==selectId}">
-									<span data-on="Be" data-off="Ki" class="switch-label"></span>
-									<span class="switch-handle"></span>
-								</label>
+                                <label class="switch switch-text switch-success switch-pill float-right">
+                                    <input type="checkbox" onclick="form.submit()" class="switch-input"
+                                           name="selectSwitch" th:value="${acct.id}" th:checked="${acct.id==selectId}">
+                                    <span data-on="Be" data-off="Ki" class="switch-label"></span>
+                                    <span class="switch-handle"></span>
+                                </label>
 
-								<div class="h4 m-0" th:text="${acct.name}" contenteditable=true></div>
-								<div><small class="text-light" th:text="'Számla: ' + ${acct.accountType.name}"></small></div>
-								<div><small class="text-light" th:text="'Tulajdonjog: ' + ${acct.ownershipType.name}"></small></div>
-								<div><small class="text-light" th:text="'Számlaszám: ' + ${acct.accountNumber}"></small></div>
-								<div><small class="text-light" th:text="'Kamatláb: ' + ${acct.interestRate} + '%'"></small></div>
-								<div><br></div>
-								<div class="h4 m-0" th:text="'Egyenleg: $' + ${acct.currentBalance}"></div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
+                                <div class="h4 m-0" th:text="${acct.name}" contenteditable=true></div>
+                                <div><small class="text-light" th:text="'Számla: ' + ${acct.accountType.name}"></small>
+                                </div>
+                                <div><small class="text-light"
+                                            th:text="'Tulajdonjog: ' + ${acct.ownershipType.name}"></small></div>
+                                <div><small class="text-light" th:text="'Számlaszám: ' + ${acct.accountNumber}"></small>
+                                </div>
+                                <div><small class="text-light"
+                                            th:text="'Kamatláb: ' + ${acct.interestRate} + '%'"></small></div>
+                                <div><br></div>
+                                <div class="h4 m-0" th:text="'Egyenleg: $' + ${acct.currentBalance}"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
-			<div class="row">
-				<div class="col-md-12">
-					<div class="card">
-						<div class="card-header bg-secondary">
-							<strong class="card-title text-light">Tranzakciók</strong>
-						</div>
-						<div class="card-body">
-							<table id="transactionTable" class="table table-striped table-bordered">
-								<thead>
-								<tr class="bg-secondary text-light">
-									<th data-field="date" data-sortable="true">Dátum</th>
-									<th data-field="category" data-sortable="true">Kategória</th>
-									<th data-field="description" data-sortable="true">Leírás</th>
-									<th data-field="amount" data-sortable="true">Összeg</th>
-									<th data-field="balance" data-sortable="true">Egyenleg</th>
-								</tr>
-								</thead>
-								<tbody>
-								<tr th:each="trans : ${transactionList}">
-									<td th:text="${#dates.format(trans.transactionDate, 'yyyy-MM-dd HH:mm')}"></td>
-									<td th:text="${trans.transactionCategory.name}"></td>
-									<td th:text="${trans.transactionNumber + ' (' + trans.transactionType.code +') - ' + trans.description}"></td>
-									<td th:class="${trans.amount < 0} ? text-danger" th:text="'$' + ${trans.amount}"></td>
-									<td th:class="${trans.runningBalance < 0} ? text-danger" th:text="'$' + ${trans.runningBalance}"></td>
-								</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header bg-secondary">
+                            <strong class="card-title text-light">Tranzakciók</strong>
+                        </div>
+                        <div class="card-body">
+                            <table id="transactionTable" class="table table-striped table-bordered">
+                                <thead>
+                                <tr class="bg-secondary text-light">
+                                    <th data-field="date" data-sortable="true">Dátum</th>
+                                    <th data-field="category" data-sortable="true">Kategória</th>
+                                    <th data-field="description" data-sortable="true">Leírás</th>
+                                    <th data-field="amount" data-sortable="true">Összeg</th>
+                                    <th data-field="balance" data-sortable="true">Egyenleg</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="trans : ${transactionList}">
+                                    <td th:text="${#dates.format(trans.transactionDate, 'yyyy-MM-dd HH:mm')}"></td>
+                                    <td th:text="${trans.transactionCategory.name}"></td>
+                                    <td th:text="${trans.transactionNumber + ' (' + trans.transactionType.code +') - ' + trans.description}"></td>
+                                    <td th:class="${trans.amount < 0} ? text-danger"
+                                        th:text="'$' + ${trans.amount}"></td>
+                                    <td th:class="${trans.runningBalance < 0} ? text-danger"
+                                        th:text="'$' + ${trans.runningBalance}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-			<div th:if="${noAccounts}">
-				<button type="button" id="showModal" style="display: none;" data-toggle="modal" data-target="#emptyAccounts"></button>
-			</div>
+            <div th:if="${noAccounts}">
+                <button type="button" id="showModal" style="display: none;" data-toggle="modal"
+                        data-target="#emptyAccounts"></button>
+            </div>
 
-		</div>
-	</div>
+        </div>
+    </div>
+</div>
+<div th:if="${noAccounts}" class="modal fade" id="emptyAccounts" tabindex="-1" role="dialog"
+     aria-labelledby="largeModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="largeModalLabel">Nincsenek számlák</h5>
+            </div>
+            <div class="modal-body">
+                <p>Jelenleg nincsenek rögzített számlái a megtekintéshez. Kérjük, hozzon létre egy új számlát.</p>
+            </div>
+            <div class="modal-footer">
+                <a th:href="@{/account/checking-add}">
+                    <button type="button" class="btn btn-primary">Folytatás</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
-	<div th:if="${noAccounts}" class="modal fade" id="emptyAccounts" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true" data-backdrop="static">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="largeModalLabel">Nincsenek számlák</h5>
-				</div>
-				<div class="modal-body">
-					<p>Jelenleg nincsenek rögzített számlái a megtekintéshez. Kérjük, hozzon létre egy új számlát.</p>
-				</div>
-				<div class="modal-footer">
-					<a th:href="@{/account/checking-add}"><button type="button" class="btn btn-primary">Folytatás</button></a>
-				</div>
-			</div>
-		</div>
-	</div>
+<!-- Láb -->
+<div th:replace="common/sections :: footer-scripts"></div>
 
-	<!-- Láb -->
-	<div th:replace="common/sections :: footer-scripts"></div>
+<script th:src="@{/js/lib/data-table/datatables.min.js}"></script>
+<script th:src="@{/js/lib/data-table/dataTables.bootstrap.min.js}"></script>
+<script th:src="@{/js/lib/data-table/dataTables.buttons.min.js}"></script>
+<script th:src="@{/js/lib/data-table/buttons.bootstrap.min.js}"></script>
+<script th:src="@{/js/lib/data-table/jszip.min.js}"></script>
+<script th:src="@{/js/lib/data-table/pdfmake.min.js}"></script>
+<script th:src="@{/js/lib/data-table/vfs_fonts.js}"></script>
+<script th:src="@{/js/lib/data-table/buttons.html5.min.js}"></script>
+<script th:src="@{/js/lib/data-table/buttons.print.min.js}"></script>
+<script th:src="@{/js/lib/data-table/buttons.colVis.min.js}"></script>
+<script th:src="@{/js/lib/data-table/datatables-init.js}"></script>
 
-	<script th:src="@{/js/lib/data-table/datatables.min.js}"></script>
-	<script th:src="@{/js/lib/data-table/dataTables.bootstrap.min.js}"></script>
-	<script th:src="@{/js/lib/data-table/dataTables.buttons.min.js}"></script>
-	<script th:src="@{/js/lib/data-table/buttons.bootstrap.min.js}"></script>
-	<script th:src="@{/js/lib/data-table/jszip.min.js}"></script>
-	<script th:src="@{/js/lib/data-table/pdfmake.min.js}"></script>
-	<script th:src="@{/js/lib/data-table/vfs_fonts.js}"></script>
-	<script th:src="@{/js/lib/data-table/buttons.html5.min.js}"></script>
-	<script th:src="@{/js/lib/data-table/buttons.print.min.js}"></script>
-	<script th:src="@{/js/lib/data-table/buttons.colVis.min.js}"></script>
-	<script th:src="@{/js/lib/data-table/datatables-init.js}"></script>
-
-	<script type="text/javascript">
+<script type="text/javascript">
 
 			$('#transactionTable').DataTable({
 				'order': []
-			});
+			} );
 
 			// Az aktuális számla nevének mentése kiválasztáskor
 			var currentName;
@@ -223,9 +236,13 @@
 				} // vége az if számlanév megváltozásának
 			});
 
-		</script>
 
-	<div th:if="${noAccounts}"><script>document.getElementById("showModal").click();</script></div>
+
+</script>
+
+<div th:if="${noAccounts}">
+    <script>document.getElementById("showModal").click();</script>
+</div>
 
 </body>
 </html>

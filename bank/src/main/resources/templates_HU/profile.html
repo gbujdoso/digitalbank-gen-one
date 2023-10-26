@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html class="no-js" lang="hu" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="common/sections :: header-css"/>
 
@@ -12,120 +12,139 @@
 <!-- Jobb Oldali Panel -->
 <div id="right-panel" class="right-panel">
 
-	<header th:replace="common/menus :: rp-header"/>
+    <header th:replace="common/menus :: rp-header"/>
 
-	<div th:replace="common/menus :: rp-breadcrumbs (pageTitle='Profil')"/>
+    <div th:replace="common/menus :: rp-breadcrumbs (pageTitle='Profil')"/>
 
-	<!-- Oldal Tartalom Kezdete -->
+    <!-- Oldal Tartalom Kezdete -->
 
-	<div class="content mt-3">
-		<div class="animated fadeIn">
+    <div class="content mt-3">
+        <div class="animated fadeIn">
 
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="card">
-						<div class="card-header bg-flat-color-1">
-							<strong class="card-title text-white">Profil Frissítése</strong>
-						</div>
-						<form th:action="@{/user/profile}" method="post">
-							<div class="card-body card-block">
-								<div class="form-group text-left">
-									<div class="sufee-alert alert with-close alert-success alert-dismissible fade show" th:if="${successMsg}">
-										<span class="badge badge-pill badge-success">Siker</span>
-										<span th:text="${successMsg}"></span>
-										<button type="button" class="close" data-dismiss="alert" aria-label="Bezárás">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-								</div>
-								<div class="row form-group">
-									<div class="col col-sm-4">
-										<label for="title" class=" form-control-label"><strong>Beosztás</strong></label>
-										<select name="title" id="title" class="form-control" th:field="${userProfile.title}" required>
-											<option value="">Kérlek válassz</option>
-											<option value="Mr.">Mr.</option>
-											<option value="Ms.">Ms.</option>
-											<option value="Mrs.">Mrs.</option>
-										</select>
-									</div>
-								</div>
-								<div class="row form-group">
-									<div class="col col-sm-4">
-										<label class="form-control-label"><strong>Keresztnév</strong></label>
-										<input type="text" class="form-control" id="firstName" th:field="${userProfile.firstName}" required>
-										<small class="form-text text-muted">pl. James</small>
-									</div>
-									<div class="col col-sm-4">
-										<label class "form-control-label"><strong>Vezetéknév</strong></label>
-										<input type="text" class="form-control" id="lastName" th:field="${userProfile.lastName}" required>
-										<small class="form-text text-muted">pl. Smith</small>
-									</div>
-								</div>
-								<hr>
-								<div class="row form-group">
-									<div class="col col-sm-4">
-										<label><strong>Lakótelefonszám</strong></label>
-										<input type="text" class="form-control" id="homePhone" th:field="${userProfile.homePhone}" required th:pattern="${patternPhone}" th:title="${patternPhoneMSG}">
-										<small class="form-text text-muted">pl. (547) 392-5436</small>
-									</div>
-									<div class="col col-sm-4">
-										<label><strong>Mobiltelefonszám</strong></label>
-										<input type="text" class="form-control" id="mobilePhone" th:field="${userProfile.mobilePhone}" th:pattern="${patternPhone}" th:title="${patternPhoneMSG}">
-										<small class="form-text text-muted">pl. (547) 392-5436</small>
-									</div>
-									<div class="col col-sm-4">
-										<label><strong>Munkahelyi telefonszám</strong></label>
-										<input type="text" class="form-control" id="workPhone" th:field="${userProfile.workPhone}" th:pattern="${patternPhone}" th:title="${patternPhoneMSG}">
-										<small class="form-text text-muted">pl. (547) 392-5436</small>
-									</div>
-								</div>
-								<hr>
-								<div class="row form-group">
-									<div class="col col-sm-4">
-										<label><strong>Cím</strong></label>
-										<input type="text" class "form-control" id="address" th:field="${userProfile.address}" required>
-										<small class="form-text text-muted">pl. 123 Digital Lane</small>
-									</div>
-								</div>
-								<div class="row form-group">
-									<div class="col col-sm-4">
-										<label><strong>Város</strong></label>
-										<input type="text" class="form-control" id="locality" th:field="${userProfile.locality}" required>
-										<small class="form-text text-muted">pl. Internet City</small>
-									</div>
-									<div class="col col-sm-4">
-										<label><strong>Terület</strong></label>
-										<input type="text" class="form-control" id="region" th:field="${userProfile.region}" required>
-										<small class="form-text text-muted">pl. CA</small>
-									</div>
-									<div class="col col-sm-4">
-										<label><strong>Irányítószám</strong></label>
-										<input type="text" class="form-control" id="postalCode" th:field="${userProfile.postalCode}" required>
-										<small class="form-text text-muted">pl. 94302</small>
-									</div>
-								</div>
-								<div class="row form-group">
-									<div class="col col-sm-4">
-										<label><strong>Ország</strong></label>
-										<input type="text" class="form-control" id="country" th:field="${userProfile.country}" required>
-										<small class="form-text text-muted">pl. US</small>
-									</div>
-								</div>
-							</div> <!-- Űrlap Vége -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header bg-flat-color-1">
+                            <strong class="card-title text-white">Profil Frissítése</strong>
+                        </div>
+                        <form th:action="@{/user/profile}" method="post">
+                            <div class="card-body card-block">
+                                <div class="form-group text-left">
+                                    <div class="sufee-alert alert with-close alert-success alert-dismissible fade show"
+                                         th:if="${successMsg}">
+                                        <span class="badge badge-pill badge-success">Siker</span>
+                                        <span th:text="${successMsg}"></span>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Bezárás">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-sm-4">
+                                        <label for="title" class=" form-control-label"><strong>Beosztás</strong></label>
+                                        <select name="title" id="title" class="form-control"
+                                                th:field="${userProfile.title}" required>
+                                            <option value="">Kérlek válassz</option>
+                                            <option value="Mr.">Mr.</option>
+                                            <option value="Ms.">Ms.</option>
+                                            <option value="Mrs.">Mrs.</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-sm-4">
+                                        <label class="form-control-label"><strong>Keresztnév</strong></label>
+                                        <input type="text" class="form-control" id="firstName"
+                                               th:field="${userProfile.firstName}" required>
+                                        <small class="form-text text-muted">pl. James</small>
+                                    </div>
+                                    <div class="col col-sm-4">
+                                        <label class="form-control-label"><strong>Vezetéknév</strong></label>
+                                        <input type="text" class="form-control" id="lastName"
+                                               th:field="${userProfile.lastName}" required>
+                                        <small class="form-text text-muted">pl. Smith</small>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row form-group">
+                                    <div class="col col-sm-4">
+                                        <label><strong>Lakótelefonszám</strong></label>
+                                        <input type="text" class="form-control" id="homePhone"
+                                               th:field="${userProfile.homePhone}" required th:pattern="${patternPhone}"
+                                               th:title="${patternPhoneMSG}">
+                                        <small class="form-text text-muted">pl. (547) 392-5436</small>
+                                    </div>
+                                    <div class="col col-sm-4">
+                                        <label><strong>Mobiltelefonszám</strong></label>
+                                        <input type="text" class="form-control" id="mobilePhone"
+                                               th:field="${userProfile.mobilePhone}" th:pattern="${patternPhone}"
+                                               th:title="${patternPhoneMSG}">
+                                        <small class="form-text text-muted">pl. (547) 392-5436</small>
+                                    </div>
+                                    <div class="col col-sm-4">
+                                        <label><strong>Munkahelyi telefonszám</strong></label>
+                                        <input type="text" class="form-control" id="workPhone"
+                                               th:field="${userProfile.workPhone}" th:pattern="${patternPhone}"
+                                               th:title="${patternPhoneMSG}">
+                                        <small class="form-text text-muted">pl. (547) 392-5436</small>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row form-group">
+                                    <div class="col col-sm-4">
+                                        <label><strong>Cím</strong></label>
+                                        <input type="text" class="form-control" id="address"
+                                               th:field="${userProfile.address}" required>
+                                        <small class="form-text text-muted">pl. 123 Digital Lane</small>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-sm-4">
+                                        <label><strong>Város</strong></label>
+                                        <input type="text" class="form-control" id="locality"
+                                               th:field="${userProfile.locality}" required>
+                                        <small class="form-text text-muted">pl. Internet City</small>
+                                    </div>
+                                    <div class="col col-sm-4">
+                                        <label><strong>Terület</strong></label>
+                                        <input type="text" class="form-control" id="region"
+                                               th:field="${userProfile.region}" required>
+                                        <small class="form-text text-muted">pl. CA</small>
+                                    </div>
+                                    <div class="col col-sm-4">
+                                        <label><strong>Irányítószám</strong></label>
+                                        <input type="text" class="form-control" id="postalCode"
+                                               th:field="${userProfile.postalCode}" required>
+                                        <small class="form-text text-muted">pl. 94302</small>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-sm-4">
+                                        <label><strong>Ország</strong></label>
+                                        <input type="text" class="form-control" id="country"
+                                               th:field="${userProfile.country}" required>
+                                        <small class="form-text text-muted">pl. US</small>
+                                    </div>
+                                </div>
+                            </div> <!-- Űrlap Vége -->
 
-							<div class="card-footer">
-								<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-dot-circle-o"></i> Elküld</button>
-								<button type="reset" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Visszaállítás</button>
-							</div> <!-- Kártya Lábléce -->
-						</form>
-					</div> <!-- Kártya Vége -->
-				</div> <!-- Oszlop Vége-->
-			</div> <!-- Sor Vége -->
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-dot-circle-o"></i>
+                                    Elküld
+                                </button>
+                                <button type="reset" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i>
+                                    Visszaállítás
+                                </button>
+                            </div> <!-- Kártya Lábléce -->
+                        </form>
+                    </div> <!-- Kártya Vége -->
+                </div> <!-- Oszlop Vége-->
+            </div> <!-- Sor Vége -->
 
-		</div><!-- Animált -->
-	</div><!-- Tartalom Vége -->
+        </div><!-- Animált -->
+    </div><!-- Tartalom Vége -->
 
-	<!-- Oldal Tartalom Vége -->
+    <!-- Oldal Tartalom Vége -->
 
 </div> <!-- Jobb Oldali Panel Vége -->
 

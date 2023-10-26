@@ -8,343 +8,385 @@
 
 
 <!-- Bal panel -->
-<aside th:replace="common/menus :: bal-panel"></aside>
+<aside th:replace="common/menus :: left-panel"></aside>
 
 <!-- Jobb panel -->
-<div id="jobb-panel" class="jobb-panel">
+<div id="right-panel" class="right-panel">
 
-	<header th:replace="common/menus :: rp-header"/>
+    <header th:replace="common/menus :: rp-header"/>
 
-	<div th:replace="common/menus :: rp-breadcrumbs (pageTitle='Hitelkártya Jelentkezés')"/>
+    <div th:replace="common/menus :: rp-breadcrumbs (pageTitle='Hitelkártya Jelentkezés')"/>
 
-	<!-- Oldal tartalom Kezdete -->
+    <!-- Oldal tartalom Kezdete -->
 
-	<div class="tartalom mt-3">
-		<div class="animált fadeIn">
+    <div class="content mt-3">
+        <div class="animated fadeIn">
 
-			<form th:action="@{/credit/credit-app}" method="post">
+            <form th:action="@{/credit/credit-app}" method="post">
 
-				<div class="sor">
-					<div class="col-lg-12">
-						<div class="kártya">
-							<div class="kártya-fej bg-flat-szín-1">
-								<strong class="szöveg-fehér kártya-cím">Hitelkártya Összegzés</strong>
-							</div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header bg-flat-color-1">
+                                <strong class="text-white card-title">Hitelkártya Összegzés</strong>
+                            </div>
 
-							<div class="kártya-tartalom">
-								<!-- Hitelkártya -->
-								<hr>
+                            <div class="card-body">
+                                <!-- Hitelkártya -->
+                                <hr>
 
-								<div  class="sor form-csoport"> <!-- sor 1 -->
-									<div class="col-sm-2 col-xs-4">
-										<label class="form-control-cím"><strong>VÁSÁRLÁSI APR</strong></label>
-									</div>
-									<div class="col-sm-4 col-xs-8">
-										<p class="mt3"> 0% bemutató APR 15 hónapig; 16,24% - 26,24% változó APR utána </p>
-									</div>
-									<div class="col-sm-2 col-xs-4">
-										<label class="form-control-cím"><strong>ÉVES DÍJ</strong></label>
-									</div>
-									<div class="col-sm-4 col-xs-8">
-										<p class="mt3"> 0 Ft </p>
-									</div>
-								</div> <!-- sor 1 -->
+                                <div class="row form-group"> <!-- row 1 -->
+                                    <div class="col-sm-2 col-xs-4">
+                                        <label class="form-control-label"><strong>VÁSÁRLÁSI APR</strong></label>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-8">
+                                        <p class="mt3"> 0% bemutató APR 15 hónapig; 16,24% - 26,24% változó APR
+                                            utána </p>
+                                    </div>
+                                    <div class="col-sm-2 col-xs-4">
+                                        <label class="form-control-label"><strong>ÉVES DÍJ</strong></label>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-8">
+                                        <p class="mt3"> 0 Ft </p>
+                                    </div>
+                                </div> <!-- sor 1 -->
 
-								<div  class="sor form-csoport"> <!-- sor 2 -->
-									<div class="col-sm-2 col-xs-4">
-										<label class="form-control-cím"><strong>ÁTVITEL INFORMÁCIÓ</strong></label>
-									</div>
-									<div class="col-sm-4 col-xs-8">
-										<p class="mt3"> 0% bemutató APR 15 hónapig; 16,24% - 26,24% változó APR utána; 3% díj a 15 hónapon belül átvitt összegekre </p>
-									</div>
-									<div class="col-sm-2 col-xs-4">
-										<label class="form-control-cím"><strong>BÓNUSZ AJÁNLAT</strong></label>
-									</div>
-									<div class="col-sm-4 col-xs-8">
-										<p class="mt3"> Egyszeri 150 dolláros készpénzbónusz, ha 3 hónapon belül 500 dollárt költ vásárlásokra a számla megnyitásától számítottan </p>
-									</div>
-								</div> <!-- sor 2 -->
+                                <div class="row form-group"> <!-- row 2 -->
+                                    <div class="col-sm-2 col-xs-4">
+                                        <label class="form-control-label"><strong>ÁTVITEL INFORMÁCIÓ</strong></label>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-8">
+                                        <p class="mt3"> 0% bemutató APR 15 hónapig; 16,24% - 26,24% változó APR utána;
+                                            3% díj a 15 hónapon belül átvitt összegekre </p>
+                                    </div>
+                                    <div class="col-sm-2 col-xs-4">
+                                        <label class="form-control-label"><strong>BÓNUSZ AJÁNLAT</strong></label>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-8">
+                                        <p class="mt3"> Egyszeri 150 dolláros készpénzbónusz, ha 3 hónapon belül 500
+                                            dollárt költ vásárlásokra a számla megnyitásától számítottan </p>
+                                    </div>
+                                </div> <!-- sor 2 -->
 
-								<div  class="sor form-csoport"> <!-- sor 3 -->
-									<div class="col-sm-2 col-xs-4">
-										<label class="form-control-cím"><strong>JUTALÉK INFORMÁCIÓ</strong></label>
-									</div>
-									<div class="col-sm-4 col-xs-8">
-										<p class="mt3"> Korlátlan 1,5% visszatérítés minden vásárlás után, minden nap </p>
-									</div>
-									<div class="col-sm-2 col-xs-4">
-										<label class="form-control-cím"><strong>Hitel Szint</strong></label>
-									</div>
-									<div class="col-sm-4 col-xs-8">
-										<p class="mt3"> Kiváló </p>
-									</div>
-								</div> <!-- sor 3 -->
-								<hr>
-							</div> <!-- Kártya Test -->
-						</div> <!-- .kártya -->
-					</div><!--/.col-->
-				</div> <!-- Sor -->
+                                <div class="row form-group"> <!-- row 3 -->
+                                    <div class="col-sm-2 col-xs-4">
+                                        <label class="form-control-label"><strong>JUTALÉK INFORMÁCIÓ</strong></label>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-8">
+                                        <p class="mt3"> Korlátlan 1,5% visszatérítés minden vásárlás után, minden
+                                            nap </p>
+                                    </div>
+                                    <div class="col-sm-2 col-xs-4">
+                                        <label class="form-control-label"><strong>Hitel Szint</strong></label>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-8">
+                                        <p class="mt3"> Kiváló </p>
+                                    </div>
+                                </div> <!-- sor 3 -->
+                                <hr>
+                            </div> <!-- Kártya Test -->
+                        </div> <!-- .kártya -->
+                    </div><!--/.col-->
+                </div> <!-- Sor -->
 
-				<div class="sor">
-					<div class="col-lg-12">
-						<div class="kártya">
-							<div class="kártya-fej bg-flat-szín-1">
-								<strong class="szöveg-fehér kártya-cím">Személyes Információ</strong>
-							</div>
-							<div class="kártya-tartalom">
-								<!-- Hitelkártya -->
-								<hr>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header bg-flat-color-1">
+                                <strong class="text-white card-title">Személyes Információ</strong>
+                            </div>
+                            <div class="card-body">
+                                <!-- Hitelkártya -->
+                                <hr>
 
-								<div class="sor form-csoport">
-									<div class="col col-sm-4">
-										<label for="title" class=" form-control-cím"><strong>Cím</strong></label>
-										<select name="title" id="title" class="form-control" th:field="${creditApp.title}" disabled>
-											<option value="">Kérjük válasszon</option>
-											<option value="Mr.">Úr</option>
-											<option value="Ms.">Kisasszony</option>
-											<option value="Mrs.">Asszony</option>
-										</select>
-									</div>
-									<input type="hidden" id="title" name="title" th:field="${creditApp.title}">
+                                <div class="row form-group">
+                                    <div class="col col-sm-4">
+                                        <label for="title" class=" form-control-label"><strong>Cím</strong></label>
+                                        <select name="title" id="title" class="form-control"
+                                                th:field="${creditApp.title}" disabled>
+                                            <option value="">Kérjük válasszon</option>
+                                            <option value="Mr.">Úr</option>
+                                            <option value="Ms.">Kisasszony</option>
+                                            <option value="Mrs.">Asszony</option>
+                                        </select>
+                                    </div>
+                                    <input type="hidden" id="title" name="title" th:field="${creditApp.title}">
 
-									<div class="col col-sm-4">
-										<label class="form-control-cím"><strong>Keresztnév</strong></label>
-										<input type="text" class="form-control" id="firstName" th:field="${creditApp.firstName}" readonly>
+                                    <div class="col col-sm-4">
+                                        <label class="form-control-label"><strong>Keresztnév</strong></label>
+                                        <input type="text" class="form-control" id="firstName"
+                                               th:field="${creditApp.firstName}" readonly>
 
-									</div>
-									<div class="col col-sm-4">
-										<label class="form-control-cím"><strong>Vezetéknév</strong></label>
-										<input type="text" class="form-control" id="lastName" th:field="${creditApp.lastName}" readonly>
+                                    </div>
+                                    <div class="col col-sm-4">
+                                        <label class="form-control-label"><strong>Vezetéknév</strong></label>
+                                        <input type="text" class="form-control" id="lastName"
+                                               th:field="${creditApp.lastName}" readonly>
 
-									</div>
-								</div>
+                                    </div>
+                                </div>
 
-								<div class="sor form-csoport">
-									<div class="col col-sm-4">
-										<label class="form-control-cím"><strong>Születési Dátum</strong></label>
-										<input type="text" class="form-control" id="firstName" th:field="${creditApp.dob}" readonly>
+                                <div class="row form-group">
+                                    <div class="col col-sm-4">
+                                        <label class="form-control-label"><strong>Születési Dátum</strong></label>
+                                        <input type="text" class="form-control" id="firstName"
+                                               th:field="${creditApp.dob}" readonly>
 
-									</div>
-									<div class="col col-sm-4">
-										<label class="form-control-cím"><strong>Szociális Biztonsági Szám</strong></label>
-										<input type="text" class="form-control" id="lastName" th:field="${creditApp.ssn}" readonly>
+                                    </div>
+                                    <div class="col col-sm-4">
+                                        <label class="form-control-label"><strong>Szociális Biztonsági
+                                            Szám</strong></label>
+                                        <input type="text" class="form-control" id="lastName"
+                                               th:field="${creditApp.ssn}" readonly>
 
-									</div>
-								</div>
-								<div>
-									<label for="gender" class="form-control-cím"><strong>Nem</strong></label>
-								</div>
-								<div class="form-check-inline form-check">
-									<label for="gender" class="form-check-cím">
-										<input type="radio" id="gender" th:field="${creditApp.gender}" name="gender" value="M" class="form-check-input" disabled>Férfi &nbsp;&nbsp;&nbsp;
-									</label>
-									<label for="gender" class="form-check-cím">
-										<input type="radio" id="gender" th:field="${creditApp.gender}" name="gender" value="F" class="form-check-input" disabled>Nő &nbsp;&nbsp;&nbsp;
-									</label>
-								</div>
-								<input type="hidden" id="gender" name="gender" th:field="${creditApp.gender}">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="gender" class="form-control-label"><strong>Nem</strong></label>
+                                </div>
+                                <div class="form-check-inline form-check">
+                                    <label for="gender" class="form-check-label">
+                                        <input type="radio" id="gender" th:field="${creditApp.gender}" name="gender"
+                                               value="M" class="form-check-input" disabled>Férfi &nbsp;&nbsp;&nbsp;
+                                    </label>
+                                    <label for="gender" class="form-check-label">
+                                        <input type="radio" id="gender" th:field="${creditApp.gender}" name="gender"
+                                               value="F" class="form-check-input" disabled>Nő &nbsp;&nbsp;&nbsp;
+                                    </label>
+                                </div>
+                                <input type="hidden" id="gender" name="gender" th:field="${creditApp.gender}">
 
-								<hr>
+                                <hr>
 
-							</div> <!-- Kártya Test -->
-						</div> <!-- .kártya -->
-					</div><!--/.col-->
-				</div> <!-- Sor -->
+                            </div> <!-- Kártya Test -->
+                        </div> <!-- .kártya -->
+                    </div><!--/.col-->
+                </div> <!-- Sor -->
 
-				<div class="sor">
-					<div class="col-lg-12">
-						<div class="kártya">
-							<div class="kártya-fej bg-flat-szín-1">
-								<strong class="szöveg-fehér kártya-cím">Elérhetőségi Információ</strong>
-							</div>
-							<div class="kártya-tartalom">
-								<!-- Hitelkártya -->
-								<hr>
-								<div class="sor form-csoport">
-									<div class="col col-sm-4">
-										<label><strong>Otthoni Telefonszám</strong></label>
-										<input type="text" class="form-control" id="homePhone" th:field="${creditApp.homePhone}" readonly>
+                <div class="sor">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header bg-flat-color-1">
+                                <strong class="text-white card-title">Elérhetőségi Információ</strong>
+                            </div>
+                            <div class="kártya-tartalom">
+                                <!-- Hitelkártya -->
+                                <hr>
+                                <div class="row form-group">
+                                    <div class="col col-sm-4">
+                                        <label><strong>Otthoni Telefonszám</strong></label>
+                                        <input type="text" class="form-control" id="homePhone"
+                                               th:field="${creditApp.homePhone}" readonly>
 
-									</div>
-									<div class="col col-sm-4">
-										<label><strong>Mobiltelefonszám</strong></label>
-										<input type="text" class="form-control" id="mobilePhone" th:field="${creditApp.mobilePhone}" readonly>
+                                    </div>
+                                    <div class="col col-sm-4">
+                                        <label><strong>Mobiltelefonszám</strong></label>
+                                        <input type="text" class="form-control" id="mobilePhone"
+                                               th:field="${creditApp.mobilePhone}" readonly>
 
-									</div>
-									<div class="col col-sm-4">
-										<label><strong>Munkahelyi Telefonszám</strong></label>
-										<input type="text" class="form-control" id="workPhone" th:field="${creditApp.workPhone}" readonly>
+                                    </div>
+                                    <div class="col col-sm-4">
+                                        <label><strong>Munkahelyi Telefonszám</strong></label>
+                                        <input type="text" class="form-control" id="workPhone"
+                                               th:field="${creditApp.workPhone}" readonly>
 
-									</div>
-								</div>
-								<hr>
-								<div class="sor form-csoport">
-									<div class="col col-sm-4">
-										<label><strong>Lakcím</strong></label>
-										<input type="text" class="form-control" id="address" th:field="${creditApp.address}" readonly>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row form-group">
+                                    <div class="col col-sm-4">
+                                        <label><strong>Lakcím</strong></label>
+                                        <input type="text" class="form-control" id="address"
+                                               th:field="${creditApp.address}" readonly>
 
-									</div>
-								</div>
-								<div class="sor form-csoport">
-									<div class="col col-sm-4">
-										<label><strong>Település</strong></label>
-										<input type="text" class="form-control" id="locality" th:field="${creditApp.locality}" readonly>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-sm-4">
+                                        <label><strong>Település</strong></label>
+                                        <input type="text" class="form-control" id="locality"
+                                               th:field="${creditApp.locality}" readonly>
 
-									</div>
-									<div class "col col-sm-4">
-									<label><strong>Terület</strong></label>
-									<input type="text" class="form-control" id="region" th:field="${creditApp.region}" readonly>
+                                    </div>
+                                    <div class="col col-sm-4">
+                                        <label><strong>Terület</strong></label>
+                                        <input type="text" class="form-control" id="region"
+                                               th:field="${creditApp.region}" readonly>
 
-								</div>
-								<div class="col col-sm-4">
-									<label><strong>Irányítószám</strong></label>
-									<input type="text" class="form-control" id="postalCode" th:field="${creditApp.postalCode}" readonly>
+                                    </div>
+                                    <div class="col col-sm-4">
+                                        <label><strong>Irányítószám</strong></label>
+                                        <input type="text" class="form-control" id="postalCode"
+                                               th:field="${creditApp.postalCode}" readonly>
 
-								</div>
-							</div>
-							<div class="sor form-csoport">
-								<div class="col col-sm-4">
-									<label><strong>Ország</strong></label>
-									<input type="text" class="form-control" id="country" th:field="${creditApp.country}" readonly>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-sm-4">
+                                        <label><strong>Ország</strong></label>
+                                        <input type="text" class="form-control" id="country"
+                                               th:field="${creditApp.country}" readonly>
 
-								</div>
-							</div>
-							<hr>
-							<div class="sor form-csoport">
-								<div class="col col-sm-4">
-									<label><strong>Email Cím</strong></label>
-									<input type="text" class="form-control" id="emailAddress" th:field="${creditApp.emailAddress}" readonly>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row form-group">
+                                    <div class="col col-sm-4">
+                                        <label><strong>Email Cím</strong></label>
+                                        <input type="text" class="form-control" id="emailAddress"
+                                               th:field="${creditApp.emailAddress}" readonly>
 
-								</div>
-							</div>
-							<hr>
-						</div> <!-- Kártya Test -->
-					</div> <!-- .kártya -->
-				</div><!--/.col-->
-		</div> <!-- Sor -->
+                                    </div>
+                                </div>
+                                <hr>
+                            </div> <!-- Kártya Test -->
+                        </div> <!-- .kártya -->
+                    </div><!--/.col-->
+                </div> <!-- Sor -->
 
-		<div class="sor">
-			<div class="col-lg-12">
-				<div class="kártya">
-					<div class="kártya-fej bg-flat-szín-1">
-						<strong class="szöveg-fehér kártya-cím">Pénzügyi Információ</strong>
-					</div>
-					<div class="kártya-tartalom">
-						<!-- Hitelkártya -->
-						<hr>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header bg-flat-color-1">
+                                <strong class="text-white card-title">Pénzügyi Információ</strong>
+                            </div>
+                            <div class="card-body">
+                                <!-- Hitelkártya -->
+                                <hr>
 
-						<div class="sor form-csoport">
-							<div class="col col-sm-12">
-								<label for="employmentStatus" class="form-control-cím"><strong>Foglalkoztatási Státusz</strong></label>
-								<select name="employmentStatus" id="employmentStatus" th:field="${creditApp.employmentStatus}" class="form-control"  required>
-									<option value="">Kérjük válasszon</option>
-									<option value="Employed">Foglalkoztatott</option>
-									<option value="Self-Employed">Egyéni Vállalkozó</option>
-									<option value="Retired">Nyugdíjas</option>
-									<option value="Student">Hallgató</option>
-									<option value="Unemployed">Munkanélküli</option>
-								</select>
-							</div>
-						</div>
-						<div class="sor form-csoport">
-							<div class="col col-sm-4">
-								<label class="form-control-cím"><strong>Éves Összjövedelem</strong></label>
-								<input type="text" class="form-control" id="annualIncome" th:field="${creditApp.annualIncome}" placeholder="$" required>
+                                <div class="row form-group">
+                                    <div class="col col-sm-12">
+                                        <label for="employmentStatus" class="form-control-label"><strong>Foglalkoztatási
+                                            Státusz</strong></label>
+                                        <select name="employmentStatus" id="employmentStatus"
+                                                th:field="${creditApp.employmentStatus}" class="form-control" required>
+                                            <option value="">Kérjük válasszon</option>
+                                            <option value="Employed">Foglalkoztatott</option>
+                                            <option value="Self-Employed">Egyéni Vállalkozó</option>
+                                            <option value="Retired">Nyugdíjas</option>
+                                            <option value="Student">Hallgató</option>
+                                            <option value="Unemployed">Munkanélküli</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-sm-4">
+                                        <label class="form-control-label"><strong>Éves Összjövedelem</strong></label>
+                                        <input type="text" class="form-control" id="annualIncome"
+                                               th:field="${creditApp.annualIncome}" placeholder="$" required>
 
-							</div>
-							<div class="col col-sm-4">
-								<label class="form-control-cím"><strong>Havi Bérlet/Lakbér</strong></label>
-								<input type="text" class="form-control" id="monthlyMortgage" th:field="${creditApp.monthlyMortgage}" placeholder="$" required>
+                                    </div>
+                                    <div class="col col-sm-4">
+                                        <label class="form-control-label"><strong>Havi Bérlet/Lakbér</strong></label>
+                                        <input type="text" class="form-control" id="monthlyMortgage"
+                                               th:field="${creditApp.monthlyMortgage}" placeholder="$" required>
 
-							</div>
-						</div>
-						<div class="sor form-csoport">
-							<div class="col col-sm-4">
-								<label class="form-control-cím"><strong>Havi Autóhitel Törlesztőrészlet(ek)</strong></label>
-								<input type="text" class="form-control" id="monthlyAutoLoan" th:field="${creditApp.monthlyAutoLoan}" placeholder="$" required>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-sm-4">
+                                        <label class="form-control-label"><strong>Havi Autóhitel
+                                            Törlesztőrészlet(ek)</strong></label>
+                                        <input type="text" class="form-control" id="monthlyAutoLoan"
+                                               th:field="${creditApp.monthlyAutoLoan}" placeholder="$" required>
 
-							</div>
-							<div class="col col-sm-4">
-								<label class="form-control-cím"><strong>Havi Egyéb Hitel Törlesztőrészlet(ek)</strong></label>
-								<input type="text" class="form-control" id="monthlyOtherLoan" th:field="${creditApp.monthlyOtherLoan}" placeholder="$" required>
+                                    </div>
+                                    <div class="col col-sm-4">
+                                        <label class="form-control-label"><strong>Havi Egyéb Hitel
+                                            Törlesztőrészlet(ek)</strong></label>
+                                        <input type="text" class="form-control" id="monthlyOtherLoan"
+                                               th:field="${creditApp.monthlyOtherLoan}" placeholder="$" required>
 
-							</div>
-						</div>
-						<div class="sor form-csoport">
-							<div class="col col-sm-4">
-								<label class="form-control-cím"><strong>Havi Minimum Hitelkártya Törlesztőrészlet(ek)</strong></label>
-								<input type="text" class="form-control" id="monthlyCreditCard" th:field="${creditApp.monthlyCreditCard}" placeholder="$" required>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-sm-4">
+                                        <label class="form-control-label"><strong>Havi Minimum Hitelkártya
+                                            Törlesztőrészlet(ek)</strong></label>
+                                        <input type="text" class="form-control" id="monthlyCreditCard"
+                                               th:field="${creditApp.monthlyCreditCard}" placeholder="$" required>
 
-							</div>
-						</div>
-						<hr>
-						<div class="sor form-csoport">
-							<div class="col col-sm-12">
-								<label for="bankruptcy" class="form-control-cím"><strong>Felszámolás vagy Csőd</strong></label>
-								<select name="bankruptcy" id="bankruptcy" th:field="${creditApp.bankruptcy}" class="form-control" required>
-									<option value="">Kérjük válasszon</option>
-									<option value="true">Igen</option>
-									<option value="false">Nem</option>
-								</select>
-							</div>
-						</div>
-						<div class="sor form-csoport">
-							<div class="col col-sm-12">
-								<label for="citizenship" class="form-control-cím"><strong>Állampolgárság</strong></label>
-								<select name="citizenship" id="citizenship" th:field="${creditApp.citizenship}" class="form-control" required>
-									<option value="">Kérjük válasszon</option>
-									<option value="US Citizen">Amerikai Állampolgár</option>
-									<option value="Permanent Resident">Állandó Lakos</option>
-									<option value="Non-Resident">Nem Állandó Lakos</option>
-								</select>
-							</div>
-						</div>
-						<div class="sor form-csoport">
-							<div class="col col-sm-12">
-								<label for="usMilitary" class="form-control-cím"><strong>Katonai Szolgálatban</strong></label>
-								<select name="usMilitary" id="usMilitary" th:field="${creditApp.usMilitary}" class="form-control" required>
-									<option value="">Kérjük válasszon</option>
-									<option value="true">Igen</option>
-									<option value="false">Nem</option>
-								</select>
-							</div>
-						</div>
-						<hr>
-						<div class="sor form-csoport">
-							<div class="col col-sm-12">
-								<label for="usResident" class="form-control-cím"><strong>Állami Lakcím</strong></label>
-								<select name="usResident" id="usResident" th:field="${creditApp.usResident}" class="form-control" required>
-									<option value="">Kérjük válasszon</option>
-									<option value="true">Igen</option>
-									<option value="false">Nem</option>
-								</select>
-							</div>
-						</div>
-						<hr>
-						<div class="sor form-csoport">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="sor form-csoport">
+                                    <div class="col col-sm-12">
+                                        <label for="bankruptcy" class="form-control-cím"><strong>Felszámolás vagy
+                                            Csőd</strong></label>
+                                        <select name="bankruptcy" id="bankruptcy" th:field="${creditApp.bankruptcy}"
+                                                class="form-control" required>
+                                            <option value="">Kérjük válasszon</option>
+                                            <option value="true">Igen</option>
+                                            <option value="false">Nem</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="sor form-csoport">
+                                    <div class="col col-sm-12">
+                                        <label for="citizenship"
+                                               class="form-control-cím"><strong>Állampolgárság</strong></label>
+                                        <select name="citizenship" id="citizenship" th:field="${creditApp.citizenship}"
+                                                class="form-control" required>
+                                            <option value="">Kérjük válasszon</option>
+                                            <option value="US Citizen">Amerikai Állampolgár</option>
+                                            <option value="Permanent Resident">Állandó Lakos</option>
+                                            <option value="Non-Resident">Nem Állandó Lakos</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="sor form-csoport">
+                                    <div class="col col-sm-12">
+                                        <label for="usMilitary" class="form-control-cím"><strong>Katonai
+                                            Szolgálatban</strong></label>
+                                        <select name="usMilitary" id="usMilitary" th:field="${creditApp.usMilitary}"
+                                                class="form-control" required>
+                                            <option value="">Kérjük válasszon</option>
+                                            <option value="true">Igen</option>
+                                            <option value="false">Nem</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="sor form-csoport">
+                                    <div class="col col-sm-12">
+                                        <label for="usResident" class="form-control-cím"><strong>Állami Lakcím</strong></label>
+                                        <select name="usResident" id="usResident" th:field="${creditApp.usResident}"
+                                                class="form-control" required>
+                                            <option value="">Kérjük válasszon</option>
+                                            <option value="true">Igen</option>
+                                            <option value="false">Nem</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="sor form-csoport">
 
-							<div class="col col-sm-12">
-								<label for="agreeTerms" class="form-check-cím">
-									<input type="checkbox" id="agreeTerms" th:field="${creditApp.agreeTerms}" name="agreeTerms" class="form-check-input" required> Elfogadom az <a th:href="@{/terms}" target="_blank">Általános Szerződési Feltételeket</a>
-								</label>
-							</div>
-						</div>
-						<hr>
-						<div class="sor form-csoport">
-							<div class="col col-sm-12">
-								<button type="submit" class="btn btn-flat-szín-1 btn-lg btn-block" th:disabled="${#fields.hasErrors()}">
-									Hitelkártya Jelentkezés
-								</button>
-							</div>
-						</div>
-					</div> <!-- Kártya Test -->
-				</div> <!-- .kártya -->
-			</div><!--/.col-->
-		</div> <!-- Sor -->
+                                    <div class="col col-sm-12">
+                                        <label for="agreeTerms" class="form-check-cím">
+                                            <input type="checkbox" id="agreeTerms" th:field="${creditApp.agreeTerms}"
+                                                   name="agreeTerms" class="form-check-input" required> Elfogadom az <a
+                                                th:href="@{/terms}" target="_blank">Általános Szerződési
+                                            Feltételeket</a>
+                                        </label>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="sor form-csoport">
+                                    <div class="col col-sm-12">
+                                        <button type="submit" class="btn btn-flat-szín-1 btn-lg btn-block"
+                                                th:disabled="${#fields.hasErrors()}">
+                                            Hitelkártya Jelentkezés
+                                        </button>
+                                    </div>
+                                </div>
+                            </div> <!-- Kártya Test -->
+                        </div> <!-- .kártya -->
+                    </div><!--/.col-->
+                </div> <!-- Sor -->
 
-		</form>
-	</div>
-</div> <!-- .tartalom -->
+            </form>
+        </div>
+    </div> <!-- .tartalom -->
 </div>
 
 </body>
