@@ -1,91 +1,100 @@
 <!DOCTYPE html>
 
-<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"> 
+<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="common/sections :: header-css"/>
 
 <!-- Cookie Consent by FreePrivacyPolicy.com https://www.FreePrivacyPolicy.com -->
-<script type="text/javascript" src="//www.freeprivacypolicy.com/public/cookie-consent/4.1.0/cookie-consent.js" charset="UTF-8"></script>
+<script type="text/javascript" src="//www.freeprivacypolicy.com/public/cookie-consent/4.1.0/cookie-consent.js"
+        charset="UTF-8"></script>
 <script type="text/javascript" charset="UTF-8">
 document.addEventListener('DOMContentLoaded', function () {
 cookieconsent.run({"notice_banner_type":"interstitial","consent_type":"implied","palette":"light","language":"hu","page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],"notice_banner_reject_button_hide":false,"preferences_center_close_button_hide":false,"page_refresh_confirmation_buttons":false,"website_name":"DBankDemo"});
 });
+
+
+
 </script>
 
 <noscript>Cookie Consent by <a href="https://www.freeprivacypolicy.com/">Free Privacy Policy Generator</a></noscript>
 <!-- End Cookie Consent by FreePrivacyPolicy.com https://www.FreePrivacyPolicy.com -->
 
 
-
 <body class="bg-dark">
 
-    <div class="sufee-login d-flex align-content-center flex-wrap">
-        <div class="container">
-            <div class="login-content">
-                <div class="login-logo">
-                    <a th:href="@{/home}">
-                        <img class="align-content" th:src="@{/images/logo.png}" alt="">
-                    </a>
-                </div>
-                
-                
-                <div class="login-form">
-                
-                <!-- Begin Alerts -->
-                
-                	<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" th:if="${param.error}">
-                       <span class="badge badge-pill badge-danger">Hiba</span>
-                         Hibás belépési adatok vagy a hozzáférés nem engedélyezett a felhasználói fiók státusza, vagy létező felhasználó munkamenet miatt.
-                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                           <span aria-hidden="true">&times;</span>
-                       </button>
-                   </div>
-                	<div class="sufee-alert alert with-close alert-success alert-dismissible fade show" th:if="${param.logout}">
-                       <span class="badge badge-pill badge-success">Sikeres</span>
-                           Sikeres kilépés.
-                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                           <span aria-hidden="true">&times;</span>
-                       </button>
-                   </div>
-                   <div class="sufee-alert alert with-close alert-success alert-dismissible fade show" th:if="${successMsg}">
-                       <span class="badge badge-pill badge-success">Sikeres</span>
-                           <span th:text="${successMsg}"></span>
-                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                           <span aria-hidden="true">&times;</span>
-                       </button>
-                   </div>
-                   <!-- End Alerts -->
-                   
-                   <!-- Begin Form -->
-                   <form th:action="@{/login}" method="post">
-	                   <div class="form-group">
-	                       <label><strong>Felhasználó</strong></label>
-	                       <input type="text" class="form-control" name="username" id="username" th:field="${user.username}" placeholder="Írja be a felhasználó nevét"/>
-	                   </div>
-                       <div class="form-group">
-                           <label><strong>Jelszó</strong></label>
-                           <input type="password" class="form-control" name="password" id="password" placeholder="Írja be a jelszót"/>
-                       </div>
-                       <div class="checkbox">
-                           <label>
-                               <input type="checkbox" name="remember-me" id="remember-me"/> Emlékezzen rám
-                           </label>
-                       </div>
-                       <button type="submit" id= "submit" class="btn btn-success btn-flat m-b-30 m-t-30">Belépés</button>
-                       <div class="register-link m-t-15 text-center">
-                           <p>Még nincs fiókja ? <a th:href="@{/signup}"> Regisztráljon itt</a></p>
-                           <p>Verzió=MF_v2.1.0.113</p>
-                       </div>
-                   </form>
-                   
-                   <!-- End Form -->
-                </div> <!--  End Login Form -->
-            </div> <!--  End Login Content -->
-        </div> <!-- End Container -->
-    </div> <!-- End Sufee -->
+<div class="sufee-login d-flex align-content-center flex-wrap">
+    <div class="container">
+        <div class="login-content">
+            <div class="login-logo">
+                <a th:href="@{/home}">
+                    <img class="align-content" th:src="@{/images/logo.png}" alt="">
+                </a>
+            </div>
 
-	<div th:replace="common/sections :: footer-scripts">
-    </div>
+
+            <div class="login-form">
+
+                <!-- Begin Alerts -->
+
+                <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show"
+                     th:if="${param.error}">
+                    <span class="badge badge-pill badge-danger">Error</span>
+                    Invalid credentials or access not granted due to user account status or an existing user session.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="sufee-alert alert with-close alert-success alert-dismissible fade show"
+                     th:if="${param.logout}">
+                    <span class="badge badge-pill badge-success">Success</span>
+                    Logout completed.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="sufee-alert alert with-close alert-success alert-dismissible fade show"
+                     th:if="${successMsg}">
+                    <span class="badge badge-pill badge-success">Success</span>
+                    <span th:text="${successMsg}"></span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!-- End Alerts -->
+
+                <!-- Begin Form -->
+                <form th:action="@{/login}" method="post">
+                    <div class="form-group">
+                        <label><strong>User Name</strong></label>
+                        <input type="text" class="form-control" name="username" id="username"
+                               th:field="${user.username}" placeholder="Enter User Name"/>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>Password</strong></label>
+                        <input type="password" class="form-control" name="password" id="password"
+                               placeholder="Enter Password"/>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="remember-me" id="remember-me"/> Remember Me
+                        </label>
+                    </div>
+                    <button type="submit" id="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Sign in</button>
+                    <div class="register-link m-t-15 text-center">
+                        <p>Don't have account ? <a th:href="@{/signup}"> Sign Up Here</a></p>
+                        <p>Username: jsmith@masterfield.hu</p>
+                        <p>Password: Demo123!</p>
+                    </div>
+                </form>
+
+                <!-- End Form -->
+            </div> <!--  End Login Form -->
+        </div> <!--  End Login Content -->
+    </div> <!-- End Container -->
+</div> <!-- End Sufee -->
+
+<div th:replace="common/sections :: footer-scripts">
+</div>
 
 </body>
 </html>
