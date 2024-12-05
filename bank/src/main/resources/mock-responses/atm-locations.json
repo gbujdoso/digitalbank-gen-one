@@ -1,0 +1,185 @@
+{
+  "atms_count": 10,
+  "atms": [
+    {
+      "distance": 0.5,
+      "atmLocation": {
+        "name": "OTP ATM Budapest",
+        "locationDescription": "Az Oktogon közelében, a 4-6-os villamosmegállónál.",
+        "address": {
+          "street": "Andrássy út 45",
+          "city": "Budapest",
+          "state": "Budapest",
+          "postalCode": "1061",
+          "country": "Hungary"
+        },
+        "coordinates": {
+          "latitude": "47.504749",
+          "longitude": "19.059645"
+        }
+      }
+    },
+    {
+      "distance": 1.2,
+      "atmLocation": {
+        "name": "K&H ATM Szeged",
+        "locationDescription": "A Kárász utca sarkán.",
+        "address": {
+          "street": "Kárász utca 8",
+          "city": "Szeged",
+          "state": "Csongrád-Csanád",
+          "postalCode": "6720",
+          "country": "Hungary"
+        },
+        "coordinates": {
+          "latitude": "46.253010",
+          "longitude": "20.146511"
+        }
+      }
+    },
+    {
+      "distance": 0.9,
+      "atmLocation": {
+        "name": "Erste ATM Debrecen",
+        "locationDescription": "A Piac utcai bevásárlóközpontban.",
+        "address": {
+          "street": "Piac utca 32",
+          "city": "Debrecen",
+          "state": "Hajdú-Bihar",
+          "postalCode": "4024",
+          "country": "Hungary"
+        },
+        "coordinates": {
+          "latitude": "47.531605",
+          "longitude": "21.627312"
+        }
+      }
+    },
+    {
+      "distance": 1.5,
+      "atmLocation": {
+        "name": "Raiffeisen ATM Győr",
+        "locationDescription": "A belváros szívében, a Széchenyi téren.",
+        "address": {
+          "street": "Széchenyi tér 5",
+          "city": "Győr",
+          "state": "Győr-Moson-Sopron",
+          "postalCode": "9022",
+          "country": "Hungary"
+        },
+        "coordinates": {
+          "latitude": "47.687457",
+          "longitude": "17.634421"
+        }
+      }
+    },
+    {
+      "distance": 0.7,
+      "atmLocation": {
+        "name": "CIB ATM Pécs",
+        "locationDescription": "A Király utca sarkán.",
+        "address": {
+          "street": "Király utca 21",
+          "city": "Pécs",
+          "state": "Baranya",
+          "postalCode": "7621",
+          "country": "Hungary"
+        },
+        "coordinates": {
+          "latitude": "46.072734",
+          "longitude": "18.233175"
+        }
+      }
+    },
+    {
+      "distance": 1.0,
+      "atmLocation": {
+        "name": "OTP ATM Székesfehérvár",
+        "locationDescription": "A városközpontban, az Alba Pláza mellett.",
+        "address": {
+          "street": "Palotai út 1",
+          "city": "Székesfehérvár",
+          "state": "Fejér",
+          "postalCode": "8000",
+          "country": "Hungary"
+        },
+        "coordinates": {
+          "latitude": "47.188428",
+          "longitude": "18.410516"
+        }
+      }
+    },
+    {
+      "distance": 1.8,
+      "atmLocation": {
+        "name": "K&H ATM Miskolc",
+        "locationDescription": "A Szinvapark bevásárlóközpontban.",
+        "address": {
+          "street": "Bajcsy-Zsilinszky út 2-4",
+          "city": "Miskolc",
+          "state": "Borsod-Abaúj-Zemplén",
+          "postalCode": "3530",
+          "country": "Hungary"
+        },
+        "coordinates": {
+          "latitude": "48.101050",
+          "longitude": "20.778438"
+        }
+      }
+    },
+    {
+      "distance": 0.6,
+      "atmLocation": {
+        "name": "Erste ATM Szombathely",
+        "locationDescription": "A Fő tér közelében.",
+        "address": {
+          "street": "Kossuth Lajos utca 3",
+          "city": "Szombathely",
+          "state": "Vas",
+          "postalCode": "9700",
+          "country": "Hungary"
+        },
+        "coordinates": {
+          "latitude": "47.230924",
+          "longitude": "16.621725"
+        }
+      }
+    },
+    {
+      "distance": 1.3,
+      "atmLocation": {
+        "name": "Raiffeisen ATM Nyíregyháza",
+        "locationDescription": "A Korzó bevásárlóközpont főbejáratánál.",
+        "address": {
+          "street": "Dózsa György utca 1",
+          "city": "Nyíregyháza",
+          "state": "Szabolcs-Szatmár-Bereg",
+          "postalCode": "4400",
+          "country": "Hungary"
+        },
+        "coordinates": {
+          "latitude": "47.949532",
+          "longitude": "21.724407"
+        }
+      }
+    },
+    {
+      "distance": 2.0,
+      "atmLocation": {
+        "name": "CIB ATM Kecskemét",
+        "locationDescription": "A városháza közelében.",
+        "address": {
+          "street": "Kossuth tér 12",
+          "city": "Kecskemét",
+          "state": "Bács-Kiskun",
+          "postalCode": "6000",
+          "country": "Hungary"
+        },
+        "coordinates": {
+          "latitude": "46.896371",
+          "longitude": "19.689686"
+        }
+      }
+    }
+  ]
+}
