@@ -1790,7 +1790,7 @@ paths:
         - Bearer_token: []
       deprecated: false
 servers:
-  - url: //localhost:8080/bank
+  - url: //localhost:9080/bank
 components:
   requestBodies:
     UpdateUser:
