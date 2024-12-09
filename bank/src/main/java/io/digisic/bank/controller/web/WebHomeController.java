@@ -4,6 +4,7 @@ import java.security.Principal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +32,10 @@ public class WebHomeController extends WebCommonController {
 	
 	@Autowired
 	private AccountService accountService;
+
+	// MF módosítás - Dávid - sikeres account létrehozásánál megerősítő üzenet magyarításához
+	@Autowired
+	private Environment environment;
 	
 	/*
 	 * Root of application. Redirects to home.
@@ -159,14 +164,28 @@ public class WebHomeController extends WebCommonController {
 		newUser.setUserProfile(newProfile);
     
 		LOG.debug("Registering new User: " + newUser);
-    
-		userService.createUser(newUser, Role.ROLE_USER);
-		model.addAttribute(MODEL_ATT_USER, newUser);
-		model.addAttribute(MODEL_ATT_SUCCESS_MSG, Messages.USER_REGIST_SUCC);
-   
-		LOG.debug("User Registered: " + newUser);
-    
-		return Constants.VIEW_LOGIN;
+
+		String locale = environment.getProperty(Constants.APP_LOCALE);
+
+		if(locale.equals("HU")){
+			userService.createUser(newUser, Role.ROLE_USER);
+			model.addAttribute(MODEL_ATT_USER, newUser);
+			model.addAttribute(MODEL_ATT_SUCCESS_MSG, Messages.USER_REGIST_SUCC_HUN);
+
+			LOG.debug("User Registered: " + newUser);
+
+			return Constants.VIEW_LOGIN;
+		} else {
+			userService.createUser(newUser, Role.ROLE_USER);
+			model.addAttribute(MODEL_ATT_USER, newUser);
+			model.addAttribute(MODEL_ATT_SUCCESS_MSG, Messages.USER_REGIST_SUCC);
+
+			LOG.debug("User Registered: " + newUser);
+
+			return Constants.VIEW_LOGIN;
+		}
+
+
 	}
   
 	@GetMapping(Constants.URI_HOME)

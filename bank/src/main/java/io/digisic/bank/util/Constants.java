@@ -325,5 +325,8 @@ public class Constants {
 	public static final String URI_OBP_API_BANK_ACCOUNT				= "/banks/{0}/accounts/{1}/account";
 	public static final String URI_OBP_API_BANK_ACCOUNT_TRANS		= "/banks/{0}/accounts/{1}/transactions";
 
+
+	//MF - Dávid - ez a property ad lehetőséget, hogy egy if kondícióval választható lehyen, hogy milyen nyelvű adatokkal buildeljen a DBank
+	public static final String APP_LOCALE						= "io.digisic.bank.locale";
 	
 }

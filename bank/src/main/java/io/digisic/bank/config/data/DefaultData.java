@@ -4,11 +4,14 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import io.digisic.bank.util.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.Ordered;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import com.github.javafaker.Faker;
 
@@ -63,7 +66,11 @@ public class DefaultData implements CommandLineRunner, Ordered {
 	private TransactionCategoryRepository categoryRepository;
 	
 	@Autowired
-	private UserService userService; 
+	private UserService userService;
+
+	// MF módosítás - Dávid - labelek magyarítása
+	@Autowired
+	private Environment environment;
 		
 	@Override
 	public int getOrder() {
@@ -135,35 +142,73 @@ public class DefaultData implements CommandLineRunner, Ordered {
 		
 		// Load Account Types if they do not exist
 		if (accountTypeRepository.findByCode("SCK") == null) {
-			
-			LOG.info("** Loading Account Types...");
-			
-			List<AccountType> accountTypes = new ArrayList<AccountType>();
-			
-			accountTypes.add(new AccountType("SCK", "CHK", "Standard Checking", 0.00, new BigDecimal(25.00), new BigDecimal(25.00), new BigDecimal(10.00)));
-			accountTypes.add(new AccountType("ICK", "CHK", "Interest Checking", 0.50, new BigDecimal(25.00), new BigDecimal(25.00), new BigDecimal(10.00)));
-			accountTypes.add(new AccountType("SAV", "SAV", "Savings", 1.85, new BigDecimal(25.00), new BigDecimal(25.00), new BigDecimal(10.00)));
-			accountTypes.add(new AccountType("MMA", "SAV", "Money Market", 2.02, new BigDecimal(2500.00), new BigDecimal(25.00), new BigDecimal(10.00)));
-			accountTypes.add(new AccountType("CDA", "INV", "Certificate of Deposit", 3.25, new BigDecimal(2000.00), new BigDecimal(0.00), new BigDecimal(0.00)));
-			accountTypes.add(new AccountType("IRA", "INV", "Individual Retirement", 2.68, new BigDecimal(1000.00), new BigDecimal(0.00), new BigDecimal(0.00)));
-			accountTypes.add(new AccountType("AUT", "LON", "Auto Loan", 4.21, new BigDecimal(0.00), new BigDecimal(0.00), new BigDecimal(0.00)));
-			accountTypes.add(new AccountType("MRG", "LON", "Mortgage Loan", 4.70, new BigDecimal(0.00), new BigDecimal(0.00), new BigDecimal(0.00)));
-			accountTypes.add(new AccountType("CRD", "CCA", "Credit Card", 16.92, new BigDecimal(0.00), new BigDecimal(0.00), new BigDecimal(0.00)));
-			
-			accountTypeRepository.saveAll(accountTypes);			
+
+			String locale = environment.getProperty(Constants.APP_LOCALE);
+
+			if(locale.equals("HU")){
+				LOG.info("** Loading Account Types...");
+
+				List<AccountType> accountTypes = new ArrayList<AccountType>();
+
+				accountTypes.add(new AccountType("SCK", "CHK", "Normál folyószámla", 0.00, new BigDecimal(25.00), new BigDecimal(25.00), new BigDecimal(10.00)));
+				accountTypes.add(new AccountType("ICK", "CHK", "Kamatos folyószámla", 0.50, new BigDecimal(25.00), new BigDecimal(25.00), new BigDecimal(10.00)));
+				accountTypes.add(new AccountType("SAV", "SAV", "Megtakarítások", 1.85, new BigDecimal(25.00), new BigDecimal(25.00), new BigDecimal(10.00)));
+				accountTypes.add(new AccountType("MMA", "SAV", "Pénzpiac", 2.02, new BigDecimal(2500.00), new BigDecimal(25.00), new BigDecimal(10.00)));
+				accountTypes.add(new AccountType("CDA", "INV", "Betéti igazolás", 3.25, new BigDecimal(2000.00), new BigDecimal(0.00), new BigDecimal(0.00)));
+				accountTypes.add(new AccountType("IRA", "INV", "Egyéni nyugdíj", 2.68, new BigDecimal(1000.00), new BigDecimal(0.00), new BigDecimal(0.00)));
+				accountTypes.add(new AccountType("AUT", "LON", "Autóhitel", 4.21, new BigDecimal(0.00), new BigDecimal(0.00), new BigDecimal(0.00)));
+				accountTypes.add(new AccountType("MRG", "LON", "Jelzáloghitel", 4.70, new BigDecimal(0.00), new BigDecimal(0.00), new BigDecimal(0.00)));
+				accountTypes.add(new AccountType("CRD", "CCA", "Hitelkártya", 16.92, new BigDecimal(0.00), new BigDecimal(0.00), new BigDecimal(0.00)));
+
+				accountTypeRepository.saveAll(accountTypes);
+			} else {
+				LOG.info("** Loading Account Types...");
+
+				List<AccountType> accountTypes = new ArrayList<AccountType>();
+
+				accountTypes.add(new AccountType("SCK", "CHK", "Standard Checking", 0.00, new BigDecimal(25.00), new BigDecimal(25.00), new BigDecimal(10.00)));
+				accountTypes.add(new AccountType("ICK", "CHK", "Interest Checking", 0.50, new BigDecimal(25.00), new BigDecimal(25.00), new BigDecimal(10.00)));
+				accountTypes.add(new AccountType("SAV", "SAV", "Savings", 1.85, new BigDecimal(25.00), new BigDecimal(25.00), new BigDecimal(10.00)));
+				accountTypes.add(new AccountType("MMA", "SAV", "Money Market", 2.02, new BigDecimal(2500.00), new BigDecimal(25.00), new BigDecimal(10.00)));
+				accountTypes.add(new AccountType("CDA", "INV", "Certificate of Deposit", 3.25, new BigDecimal(2000.00), new BigDecimal(0.00), new BigDecimal(0.00)));
+				accountTypes.add(new AccountType("IRA", "INV", "Individual Retirement", 2.68, new BigDecimal(1000.00), new BigDecimal(0.00), new BigDecimal(0.00)));
+				accountTypes.add(new AccountType("AUT", "LON", "Auto Loan", 4.21, new BigDecimal(0.00), new BigDecimal(0.00), new BigDecimal(0.00)));
+				accountTypes.add(new AccountType("MRG", "LON", "Mortgage Loan", 4.70, new BigDecimal(0.00), new BigDecimal(0.00), new BigDecimal(0.00)));
+				accountTypes.add(new AccountType("CRD", "CCA", "Credit Card", 16.92, new BigDecimal(0.00), new BigDecimal(0.00), new BigDecimal(0.00)));
+
+				accountTypeRepository.saveAll(accountTypes);
+			}
+
+
 		}
 		
 		// Load Ownership Types if they do not exist
 		if (ownershipTypeRepository.findByCode("IND") == null) {
+
+			String locale = environment.getProperty(Constants.APP_LOCALE);
+
+			if(locale.equals("HU")){
+
+				LOG.info("** Loading Ownership Types...");
+
+				List<OwnershipType> ownershipTypes = new ArrayList<OwnershipType>();
+
+				ownershipTypes.add(new OwnershipType("IND", "Egyéni"));
+				ownershipTypes.add(new OwnershipType("JNT", "Közös"));
+
+				ownershipTypeRepository.saveAll(ownershipTypes);
+			} else {
+				LOG.info("** Loading Ownership Types...");
+
+				List<OwnershipType> ownershipTypes = new ArrayList<OwnershipType>();
+
+				ownershipTypes.add(new OwnershipType("IND", "Individual"));
+				ownershipTypes.add(new OwnershipType("JNT", "Joint"));
+
+				ownershipTypeRepository.saveAll(ownershipTypes);
+			}
 			
-			LOG.info("** Loading Ownership Types...");
-			
-			List<OwnershipType> ownershipTypes = new ArrayList<OwnershipType>();
-			
-			ownershipTypes.add(new OwnershipType("IND", "Individual"));
-			ownershipTypes.add(new OwnershipType("JNT", "Joint"));
-		
-			ownershipTypeRepository.saveAll(ownershipTypes);
+
 			
 		}
 		
@@ -237,30 +282,62 @@ public class DefaultData implements CommandLineRunner, Ordered {
 		
 		// Load Transaction Categories
 		if (categoryRepository.findByCode("INC") == null) {
+
+			String locale = environment.getProperty(Constants.APP_LOCALE);
+
+			if(locale.equals("HU")){
+				LOG.info("** Loading Transaction Categories...");
+
+				List<TransactionCategory> categories = new ArrayList<TransactionCategory>();
+
+				categories.add(new TransactionCategory("INC", "Bevétel"));
+				categories.add(new TransactionCategory("MIS", "Egyéb"));
+				categories.add(new TransactionCategory("ENT", "Szórakozás"));
+				categories.add(new TransactionCategory("EDU", "Oktatás"));
+				categories.add(new TransactionCategory("SHP", "Bevásárlás"));
+				categories.add(new TransactionCategory("PRC", "Személyes törődés"));
+				categories.add(new TransactionCategory("HLT", "Egészség & Fitness"));
+				categories.add(new TransactionCategory("KID", "Kids"));
+				categories.add(new TransactionCategory("FDD", "Élelmiszer & Étkezés"));
+				categories.add(new TransactionCategory("GFT", "Ajándékok és Adományok"));
+				categories.add(new TransactionCategory("INV", "Befektetések"));
+				categories.add(new TransactionCategory("BIL", "Számlák és Közművek"));
+				categories.add(new TransactionCategory("AUT", "Autó & Közlekedés"));
+				categories.add(new TransactionCategory("TRV", "Utazás"));
+				categories.add(new TransactionCategory("FEE", "Díjak & Költségek"));
+				categories.add(new TransactionCategory("BUS", "Üzleti szolgáltatások"));
+				categories.add(new TransactionCategory("TAX", "Adók"));
+
+				categoryRepository.saveAll(categories);
+
+			} else {
+
+				LOG.info("** Loading Transaction Categories...");
+
+				List<TransactionCategory> categories = new ArrayList<TransactionCategory>();
+
+				categories.add(new TransactionCategory("INC", "Income"));
+				categories.add(new TransactionCategory("MIS", "Misc"));
+				categories.add(new TransactionCategory("ENT", "Entertainment"));
+				categories.add(new TransactionCategory("EDU", "Education"));
+				categories.add(new TransactionCategory("SHP", "Shopping"));
+				categories.add(new TransactionCategory("PRC", "Personal Care"));
+				categories.add(new TransactionCategory("HLT", "Health & Fitness"));
+				categories.add(new TransactionCategory("KID", "Kids"));
+				categories.add(new TransactionCategory("FDD", "Food & Dinning"));
+				categories.add(new TransactionCategory("GFT", "Gifts & Donations"));
+				categories.add(new TransactionCategory("INV", "Investments"));
+				categories.add(new TransactionCategory("BIL", "Bills & Utilities"));
+				categories.add(new TransactionCategory("AUT", "Auto & Transport"));
+				categories.add(new TransactionCategory("TRV", "Travel"));
+				categories.add(new TransactionCategory("FEE", "Fees & Charges"));
+				categories.add(new TransactionCategory("BUS", "Business Services"));
+				categories.add(new TransactionCategory("TAX", "Taxes"));
+
+				categoryRepository.saveAll(categories);
+			}
 			
-			LOG.info("** Loading Transaction Categories...");
-			
-			List<TransactionCategory> categories = new ArrayList<TransactionCategory>();
-			
-			categories.add(new TransactionCategory("INC", "Income"));
-			categories.add(new TransactionCategory("MIS", "Misc"));
-			categories.add(new TransactionCategory("ENT", "Entertainment"));
-			categories.add(new TransactionCategory("EDU", "Education"));
-			categories.add(new TransactionCategory("SHP", "Shopping"));
-			categories.add(new TransactionCategory("PRC", "Personal Care"));
-			categories.add(new TransactionCategory("HLT", "Health & Fitness"));
-			categories.add(new TransactionCategory("KID", "Kids"));
-			categories.add(new TransactionCategory("FDD", "Food & Dinning"));
-			categories.add(new TransactionCategory("GFT", "Gifts & Donations"));
-			categories.add(new TransactionCategory("INV", "Investments"));
-			categories.add(new TransactionCategory("BIL", "Bills & Utilities"));
-			categories.add(new TransactionCategory("AUT", "Auto & Transport"));
-			categories.add(new TransactionCategory("TRV", "Travel"));
-			categories.add(new TransactionCategory("FEE", "Fees & Charges"));
-			categories.add(new TransactionCategory("BUS", "Business Services"));
-			categories.add(new TransactionCategory("TAX", "Taxes"));
-			
-			categoryRepository.saveAll(categories);
+
 			
 		}
 		

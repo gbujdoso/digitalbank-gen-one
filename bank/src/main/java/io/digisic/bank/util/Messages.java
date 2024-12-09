@@ -171,4 +171,9 @@ public class Messages {
 	public static final String CREDIT_APP_AGREE_TERMS_FORMT	= "Agree to Terms must be true.";
 	public static final String CREDIT_APP_SVC_UNAVAILABLE   = "The Digital Credit service is temporarily unavailable. We applogize for "
 															+ "any inconvenience this may cause. Please try again at a later time.";
+
+	// Masterfield - Dávid - Új account sikeres létrehozásakor felbukkanó üzenet magyar lokalizácihoz
+	public static final String ACCT_CREATE_MSG_FORMAT_HUN	= "Új {0} típusú számla sikeresen létrehozásra került a következő névvel: {1}";
+	public static final String USER_PROFILE_UPDATED_HUN		= "Profil sikeresen frissítve.";
+	public static final String USER_REGIST_SUCC_HUN			= "Regisztráció sikeres. Kérjük, jelentkezzen be.";
 }

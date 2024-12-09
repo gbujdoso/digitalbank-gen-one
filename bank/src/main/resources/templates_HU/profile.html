@@ -41,7 +41,7 @@
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-sm-4">
-                                        <label for="title" class=" form-control-label"><strong>Beosztás</strong></label>
+                                        <label for="title" class=" form-control-label"><strong>Megszólítás</strong></label>
                                         <select name="title" id="title" class="form-control"
                                                 th:field="${userProfile.title}" required>
                                             <option value="">Kérlek válassz</option>
@@ -68,7 +68,7 @@
                                 <hr>
                                 <div class="row form-group">
                                     <div class="col col-sm-4">
-                                        <label><strong>Lakótelefonszám</strong></label>
+                                        <label><strong>Otthoni telefonszám</strong></label>
                                         <input type="text" class="form-control" id="homePhone"
                                                th:field="${userProfile.homePhone}" required th:pattern="${patternPhone}"
                                                th:title="${patternPhoneMSG}">

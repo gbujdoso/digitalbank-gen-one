@@ -4,6 +4,7 @@ import java.security.Principal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,6 +36,10 @@ public class WebUserController extends WebCommonController {
 	
 	@Autowired
 	private SampleDataService sampleDataService;
+
+	// MF módosítás - Dávid - sikeres account létrehozásánál megerősítő üzenet magyarításához
+	@Autowired
+	private Environment environment;
 		
 
 	@GetMapping(Constants.URI_USR_PASSWORD)
@@ -135,7 +140,15 @@ public class WebUserController extends WebCommonController {
 	    model.addAttribute(MODEL_ATT_PATTERN_PHONE_MSG, Messages.USER_PHONE_GENERIC_FORMAT);
 	    
 		model.addAttribute(MODEL_ATT_USER_PROFILE, user.getUserProfile());
-		model.addAttribute(MODEL_ATT_SUCCESS_MSG, Messages.USER_PROFILE_UPDATED);
+
+		String locale = environment.getProperty(Constants.APP_LOCALE);
+
+		if(locale.equals("HU")){
+			model.addAttribute(MODEL_ATT_SUCCESS_MSG, Messages.USER_PROFILE_UPDATED_HUN);
+		} else {
+			model.addAttribute(MODEL_ATT_SUCCESS_MSG, Messages.USER_PROFILE_UPDATED);
+		}
+
 		    
 		return Constants.VIEW_USR_PROFILE;
 	}

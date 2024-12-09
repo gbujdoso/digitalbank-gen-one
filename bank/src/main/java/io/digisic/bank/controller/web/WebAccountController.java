@@ -8,6 +8,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +39,10 @@ public class WebAccountController extends WebCommonController {
 	
 	@Autowired
 	private UserService userService;
+
+	// MF módosítás - Dávid - sikeres account létrehozásánál megerősítő üzenet magyarításához
+	@Autowired
+	private Environment environment;
 	
 		
 	@GetMapping(Constants.URI_CHK_ADD)
@@ -88,7 +93,14 @@ public class WebAccountController extends WebCommonController {
 			userService.addNotification(user, "New "+accountType+" account named "+accountName+" created");
 			
 			// Add "Flash" attribute, which survives a redirect initially and then automatically cleared (see PRG)
-			redirectAttrs.addFlashAttribute(MODEL_NEW_ACCT_CONF_MSG, MessageFormat.format(Messages.ACCT_CREATE_MSG_FORMAT, accountType, accountName));
+			String locale = environment.getProperty(Constants.APP_LOCALE);
+
+			if(locale.equals("HU")){
+				redirectAttrs.addFlashAttribute(MODEL_NEW_ACCT_CONF_MSG, MessageFormat.format(Messages.ACCT_CREATE_MSG_FORMAT_HUN, accountType, accountName));
+			} else {
+				redirectAttrs.addFlashAttribute(MODEL_NEW_ACCT_CONF_MSG, MessageFormat.format(Messages.ACCT_CREATE_MSG_FORMAT, accountType, accountName));
+			}
+
 			
 		} else {
 			
@@ -165,7 +177,14 @@ public class WebAccountController extends WebCommonController {
 			userService.addNotification(user, "New "+accountType+" account named "+accountName+" created");
 			
 			// Add "Flash" attribute, which survives a redirect initially and then automatically cleared (see PRG)
-			redirectAttrs.addFlashAttribute(MODEL_NEW_ACCT_CONF_MSG, MessageFormat.format(Messages.ACCT_CREATE_MSG_FORMAT, accountType, accountName));
+			String locale = environment.getProperty(Constants.APP_LOCALE);
+
+			if(locale.equals("HU")){
+				redirectAttrs.addFlashAttribute(MODEL_NEW_ACCT_CONF_MSG, MessageFormat.format(Messages.ACCT_CREATE_MSG_FORMAT_HUN, accountType, accountName));
+			} else {
+				redirectAttrs.addFlashAttribute(MODEL_NEW_ACCT_CONF_MSG, MessageFormat.format(Messages.ACCT_CREATE_MSG_FORMAT, accountType, accountName));
+			}
+
 			
 		} else {
 			

@@ -7,7 +7,7 @@ EXPOSE 9443
 # EN
 # COPY /target/bank##2.1.0.122.war /usr/local/tomcat/webapps/
 # HU
-COPY /target/bank##2.1.0.122_HU.war /usr/local/tomcat/webapps/
+COPY /target/bank##2.1.0.123_HU.war /usr/local/tomcat/webapps/
 COPY /target/classes/application.properties /usr/local/tomcat/conf/digitalbank.properties
 COPY /target/classes/keystore/digisic.p12 /usr/local/tomcat/conf/digisic.p12
 COPY /target/classes/server.xml /usr/local/tomcat/conf/server.xml
