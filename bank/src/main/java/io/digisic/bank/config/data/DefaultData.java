@@ -41,7 +41,10 @@ public class DefaultData implements CommandLineRunner, Ordered {
 	private static final Logger LOG = LoggerFactory.getLogger(DefaultData.class);
 	
 	// API Administrator unique details
+
+	// MF módosítás: az e-mail formátumot innen is kiveszem
 	private static String ADMIN_API_USER_EMAIL 	= "admin@demo.io";
+	//private static String ADMIN_API_USER_EMAIL 	= "admindemoio";
 	private static String ADMIN_API_USER_PASS 	= "Demo123!";
 	
 	@Autowired

@@ -32,8 +32,13 @@ public class SampleDataService {
     private static Faker faker = new Faker(new Locale("en-US"));
 
     // Public Data
-    public static String SMPL_MALE_EMAIL = "jsmith@masterfield.hu";
-    public static String SMPL_FEMALE_EMAIL = "nsmith@masterfield.hu";
+
+    // MF módosítás: az e-mail cím már felhasználónév. Ezért az alapban elkészülő fiókok is felhasználónévvel készülnek e-mail helyett.
+    //public static String SMPL_MALE_EMAIL = "jsmith@masterfield.hu";
+    //public static String SMPL_FEMALE_EMAIL = "nsmith@masterfield.hu";
+    public static String SMPL_MALE_EMAIL = "jsmith";
+    public static String SMPL_FEMALE_EMAIL = "nsmith";
+
     public static String SMPL_COMMON_PASSWORD = "Demo123!";
     public static String SMPL_MALE_FIRST_NAME = "Josh";
     public static String SMPL_FEMALE_FIRST_NAME = "Nicole";

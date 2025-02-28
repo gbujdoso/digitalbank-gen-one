@@ -18,7 +18,11 @@ public class Patterns {
 	public static final String USER_GENDER			= "M|F";
 	public static final String USER_SSN				= "^\\d{3}-?\\d{2}-?\\d{4}$";
 	public static final String USER_DOB				= "\\d{1,2}/\\d{1,2}/\\d{4}";
-	public static final String USER_EMAIL			= "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
+
+	// MF módosítás: a regisztráció és bejelentkezéskor megadandó e-mail cím kiváltása felhasználónévvel: 5-25 karakter közötti, kis és nagybetűket, számot, @ és . karaktert tartalmazhat
+	//public static final String USER_EMAIL			= "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
+	public static final String USER_EMAIL			= "^[a-zA-Z0-9@\\.]{5,25}$";
+
 	public static final String USER_PHONE_REQ		= "^[+]?([0-9]*[\\.\\s\\-\\(\\)]|[0-9]+){3,24}$";
 	public static final String USER_PHONE_NOT_REQ	= "^$|^[+]?([0-9]*[\\.\\s\\-\\(\\)]|[0-9]+){3,24}$";
 	
