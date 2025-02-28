@@ -75,10 +75,10 @@
                         <small class="form-text text-muted">ex. 123-45-6789</small>
                     </div>
                     <div class="form-group">
-                        <label class="form-control-label"><strong>Email Address</strong></label>
-                        <input type="email" class="form-control" id="emailAddress"
+                        <label class="form-control-label"><strong>Username</strong></label>
+                        <input type="text" class="form-control" id="emailAddress"
                                th:field="${userProfile.emailAddress}" required th:pattern="${patternEmail}">
-                        <small class="form-text text-muted">ex. user@gmail.com</small>
+                        <small class="form-text text-muted">Allowed: 5-25 characters, lower case, upper case, numbers, "@" and "." characters.</small>
                     </div>
                     <div class="form-group">
                         <label class="form-control-label"><strong>Password</strong></label>
